@@ -30,6 +30,7 @@ addAttributes newAttributes (Config settings) =
 {-| Convert a slide config to html
 
 Not exposed because it does not make sense to have a standalone slide outside of a carousel.
+
 -}
 view : Config msg -> Html msg
 view (Config { attributes, content, caption }) =

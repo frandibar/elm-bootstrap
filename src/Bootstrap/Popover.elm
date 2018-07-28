@@ -23,23 +23,26 @@ module Bootstrap.Popover
 
 {-| Add small overlay content, like those found in iOS, to any element for housing secondary information.
 
-    -- You need to keep track of the view state for a popover
     type alias Model =
-        { popoverState = Popover.State }
+        { popoverState : Popover.State }
+
 
     -- Define a message to handle popover state changes
+
     type Msg
         = PopoverMsg Popover.State
 
 
     -- Initialize the popover state
+
     initialState : ( Model, Cmd Msg )
     initialState =
-        ( { popoverState = Popover.initialState}, Cmd.none )
+        ( { popoverState = Popover.initialState }, Cmd.none )
 
 
     -- Step the popover state forward in your update function
-    update : Msg -> Model -> ( Model, Cmd Msg)
+
+    update : Msg -> Model -> ( Model, Cmd Msg )
     update msg model =
         case msg of
             PopoverMsg state ->
@@ -47,42 +50,46 @@ module Bootstrap.Popover
 
 
     -- Compose a popover in your view (or a view helper function)
+
     view : Model -> Html Msg
     view model =
-         Popover.config
-             ( Button.button
+        Popover.config
+            (Button.button
                 -- Here configure the popover to be shown when the mouse is above the button ( tooltip basically !)
                 [ Button.attrs <| Popover.onHover model.popoverState PopoverMsg ]
                 [ text "Toggle tooltip" ]
-             )
-             |> Popover.right
-             |> Popover.titleH4 [] [ text "My title" ]
-             |> Popover.content []
-                 [ text "Some content for my popover."
-                 , p [] [ text "Different elements ok..."]
-                 ]
-             |> Popover.view model.popoverState
+            )
+            |> Popover.right
+            |> Popover.titleH4 [] [ text "My title" ]
+            |> Popover.content []
+                [ text "Some content for my popover."
+                , p [] [ text "Different elements ok..." ]
+                ]
+            |> Popover.view model.popoverState
 
-
-
-_You should be aware that the triggering element is wrapped by an `inline-block` div with relative positioning and that
+*You should be aware that the triggering element is wrapped by an `inline-block` div with relative positioning and that
 the popover is added as a sibling of the triggering element. This will limit it's usage and there are bound to be
-cases where they don't work as you'd expect. So make sure you test your views when using them !_
-
+cases where they don't work as you'd expect. So make sure you test your views when using them !*
 
 
 # Setup
+
 @docs config, initialState, view, Config, State
 
+
 # Triggering
+
 @docs onClick, onHover
 
+
 # View composition
+
 @docs title, content, titleH1, titleH2, titleH3, titleH4, titleH5, titleH6
 
-# Positioning
-@docs left, right, top, bottom
 
+# Positioning
+
+@docs left, right, top, bottom
 
 -}
 
@@ -160,8 +167,9 @@ initialState =
 {-| This function creates the view representation for a Popover. Whether it's displayed or not
 is determined by it's view state.
 
-* `state` - The current view state for the popover
-* `config` - The view configuration for the popover
+  - `state` - The current view state for the popover
+  - `config` - The view configuration for the popover
+
 -}
 view : State -> Config msg -> Html.Html msg
 view state ((Config { triggerElement }) as config) =
@@ -257,8 +265,9 @@ positionClass position =
 {-| Creates a click handler that will toggle the visibility of
 a popover
 
-* `state` - The current state of the popover to toggle
-* `toMsg` - Message tagger function to handle state changes to a popover
+  - `state` - The current state of the popover to toggle
+  - `toMsg` - Message tagger function to handle state changes to a popover
+
 -}
 onClick : State -> (State -> msg) -> List (Html.Attribute msg)
 onClick state toMsg =
@@ -270,8 +279,9 @@ onClick state toMsg =
 {-| Creates a `mouseenter` and `mouseleave` message handler that will toggle the visibility of
 a popover
 
-* `state` - The current state of the popover to toggle
-* `toMsg` - Message tagger function to handle state changes to a popover
+  - `state` - The current state of the popover to toggle
+  - `toMsg` - Message tagger function to handle state changes to a popover
+
 -}
 onHover : State -> (State -> msg) -> List (Html.Attribute msg)
 onHover state toMsg =
@@ -307,7 +317,8 @@ toggleState (State ({ isActive } as state)) toMsg =
 
 {-| Creates a default view config for a popover
 
-* `triggerElement` - The element that will trigger the popover
+  - `triggerElement` - The element that will trigger the popover
+
 -}
 config : Html.Html msg -> Config msg
 config triggerElement =
@@ -338,8 +349,9 @@ content attributes children (Config config) =
 
 {-| Define a popover title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 title :
     List (Html.Attribute msg)
@@ -352,8 +364,9 @@ title =
 
 {-| Define a popover h1 title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 titleH1 :
     List (Html.Attribute msg)
@@ -366,8 +379,9 @@ titleH1 =
 
 {-| Define a popover h2 title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 titleH2 :
     List (Html.Attribute msg)
@@ -380,8 +394,9 @@ titleH2 =
 
 {-| Define a popover h3 title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 titleH3 :
     List (Html.Attribute msg)
@@ -394,8 +409,9 @@ titleH3 =
 
 {-| Define a popover h4 title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 titleH4 :
     List (Html.Attribute msg)
@@ -408,8 +424,9 @@ titleH4 =
 
 {-| Define a popover h5 title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 titleH5 :
     List (Html.Attribute msg)
@@ -422,8 +439,9 @@ titleH5 =
 
 {-| Define a popover h6 title.
 
-* `attributes` - List of attributes
-* `children` - List of child elements
+  - `attributes` - List of attributes
+  - `children` - List of child elements
+
 -}
 titleH6 :
     List (Html.Attribute msg)
@@ -566,7 +584,7 @@ calculatePos pos { rect, offsetWidth, offsetHeight } =
         Top ->
             { left = (rect.width / 2) - (offsetWidth / 2)
             , top = -offsetHeight - 10
-            , arrowTop =Nothing
+            , arrowTop = Nothing
             , arrowLeft = Just <| (offsetWidth / 2) - 12
             }
 

@@ -7,7 +7,6 @@ import Bootstrap.Internal.ListGroup as ListGroup
 import Bootstrap.Internal.Role as Role
 
 
-
 type CardOption msg
     = Aligned Text.HAlign
     | Coloring RoleOption
@@ -18,8 +17,6 @@ type CardOption msg
 type RoleOption
     = Roled Role.Role
     | Outlined Role.Role
-
-
 
 
 type alias CardOptions msg =

@@ -967,7 +967,6 @@ shouldHideMenu (State { windowSize }) (Config { options }) =
 
                 Nothing ->
                     XS
-
     in
         sizeToComparable winMedia > sizeToComparable options.toggleAt
 
@@ -1284,7 +1283,6 @@ dropdownItem attributes children =
 
 {-| Creates a divider element appropriate for use in dropdowns.
 Handy when you want to visually separate groups of menu items in a dropdown menu
-
 -}
 dropdownDivider : DropdownItem msg
 dropdownDivider =

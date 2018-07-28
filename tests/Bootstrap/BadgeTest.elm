@@ -7,9 +7,6 @@ import Test.Html.Query as Query
 import Test.Html.Selector exposing (text, tag, classes)
 
 
-
-
-
 badge : Test
 badge =
     let
@@ -28,6 +25,7 @@ badge =
                     html
                         |> Query.has [ classes [ "badge", "badge-danger" ] ]
             ]
+
 
 pill : Test
 pill =

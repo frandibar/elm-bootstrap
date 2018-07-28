@@ -9,11 +9,16 @@ module Bootstrap.Carousel.Slide exposing (Config, SlideContent, config, caption,
            , p [] []
            ]
 
+
 # Slide
+
 @docs Config, config, caption
 
+
 # Content
+
 @docs SlideContent, image, customContent
+
 -}
 
 import Html.Styled exposing (Html, div, text)
@@ -22,7 +27,6 @@ import Bootstrap.Carousel.SlideInternal as SlideInternal exposing (Config(..), S
 
 
 {-| Opaque type that defines the view configuration information of your slide
-
 -}
 type alias Config msg =
     SlideInternal.Config msg
@@ -48,6 +52,7 @@ config attributes content =
 {-| Add a caption to your slide
 
 The captions are automatically hidden on small devices.
+
 -}
 caption : List (Html.Styled.Attribute msg) -> List (Html msg) -> Config msg -> Config msg
 caption attributes children (Config settings) =
@@ -56,8 +61,9 @@ caption attributes children (Config settings) =
 
 {-| Populate a slide with an image.
 
-* `attributes` List of attributes
-* `src` the `src` attribute for the image
+  - `attributes` List of attributes
+  - `src` the `src` attribute for the image
+
 -}
 image : List (Html.Styled.Attribute msg) -> String -> SlideContent msg
 image attributes src =

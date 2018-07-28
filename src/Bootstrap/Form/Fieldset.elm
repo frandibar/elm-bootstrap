@@ -13,12 +13,15 @@ module Bootstrap.Form.Fieldset
 {-| Fieldset is a handy block level element you can use to group form elements.
 Fieldset comes with the added benefit of disabling all child controls when we set it's disabled attribute.
 
+
 # General
+
 @docs Config, view, config
 
-# Customization
-@docs asGroup, disabled, children, legend, attrs
 
+# Customization
+
+@docs asGroup, disabled, children, legend, attrs
 
 -}
 
@@ -119,6 +122,7 @@ of several optional elements.
                 ]
             )
         |> Fieldset.view
+
 -}
 view : Config msg -> Html.Html msg
 view (Config { options, legend, children }) =

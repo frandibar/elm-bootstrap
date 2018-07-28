@@ -41,6 +41,7 @@ item =
         , attrs = []
         }
 
+
 {-| Customize the (li) element container for a pagination item.
 -}
 attrs : List (Html.Attribute msg) -> ItemConfig msg -> ItemConfig msg
@@ -59,6 +60,7 @@ active isActive ((Internal.ItemConfig rec) as config) =
     else
         config
 
+
 {-| Set this item as disabled. For links it will also set tabindex to -1 and override the clickhandler.
 -}
 disabled : Bool -> Internal.ItemConfig msg -> Internal.ItemConfig msg
@@ -68,6 +70,7 @@ disabled isDisabled ((Internal.ItemConfig rec) as config) =
             { rec | status = Disabled }
     else
         config
+
 
 {-| Create a pagination link (a) element.
 -}
@@ -81,6 +84,7 @@ link attributes children config =
         { config = config
         , link = Internal.Link Html.a attributes children
         }
+
 
 {-| Create a pagination span element.
 -}

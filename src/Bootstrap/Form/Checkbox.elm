@@ -18,11 +18,13 @@ module Bootstrap.Form.Checkbox
 
 
 # Creating
+
 @docs checkbox, custom
 
-# Options
-@docs id, checked, inline, indeterminate, disabled, onCheck, attrs, success, danger, Option
 
+# Options
+
+@docs id, checked, inline, indeterminate, disabled, onCheck, attrs, success, danger, Option
 
 -}
 
@@ -163,6 +165,7 @@ checked isCheck =
 
 **Note**: A checkbox can't be both indeterminate and checked, so if you set both
 the last one provided in the list of options to the checkbox function "wins".
+
 -}
 indeterminate : Option msg
 indeterminate =
@@ -188,7 +191,6 @@ inline =
 success : Option msg
 success =
     Validation FormInternal.Success
-
 
 
 {-| Option to color a checkbox with danger.

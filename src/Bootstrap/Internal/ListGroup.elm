@@ -5,15 +5,12 @@ import Html.Styled.Attributes as Attr exposing (classList, class)
 import Bootstrap.Internal.Role as Role exposing (Role(..))
 
 
-
 type ItemOption msg
     = Roled Role
     | Active
     | Disabled
     | Action
     | Attrs (List (Html.Attribute msg))
-
-
 
 
 type alias ItemOptions msg =

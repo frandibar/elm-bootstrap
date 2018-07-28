@@ -22,14 +22,17 @@ It doesn't use the HTML5 `<progress>` element, ensuring you can stack progress b
 
 
 # Progress bar
+
 @docs progress
 
 
 ## Options
+
 @docs value, height, label, customLabel, success, info, warning, danger, striped, animated, attrs, wrapperAttrs, Option
 
 
 # Stacking multiple
+
 @docs progressMulti
 
 -}
@@ -78,9 +81,10 @@ type Options msg
         , Progress.value 30
         ]
 
-* `options` List of options
+  - `options` List of options
 
 **NOTE: ** If you have duplicate options, the last one "wins"
+
 -}
 progress : List (Option msg) -> Html msg
 progress modifiers =
@@ -136,6 +140,7 @@ height height =
 {-| Option to specify a text label for a progress bar
 
 The label will only display when you have set a [`value`](#value)
+
 -}
 label : String -> Option msg
 label text =
@@ -180,6 +185,7 @@ danger =
 {-| Option to make the progress bar animated
 
 **NOTE: ** Giving this option will automatically also make the background [`striped`](#striped)
+
 -}
 animated : Option msg
 animated =
@@ -206,7 +212,6 @@ attrs attrs =
 wrapperAttrs : List (Attribute msg) -> Option msg
 wrapperAttrs attrs =
     WrapperAttrs attrs
-
 
 
 applyOption : Option msg -> Options msg -> Options msg

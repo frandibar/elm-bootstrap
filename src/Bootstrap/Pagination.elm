@@ -1,30 +1,29 @@
-module Bootstrap.Pagination exposing
-    ( defaultConfig
-    , view
-    , Config
-    , large
-    , small
-    , ariaLabel
-    , attrs
-    , listAttrs
-    , align
-    , items
-    , itemsList
-    , ListConfig
-    , ListItem
-    )
+module Bootstrap.Pagination
+    exposing
+        ( defaultConfig
+        , view
+        , Config
+        , large
+        , small
+        , ariaLabel
+        , attrs
+        , listAttrs
+        , align
+        , items
+        , itemsList
+        , ListConfig
+        , ListItem
+        )
 
 {-| Module for creating a Boostrap Pagination control, to indicate a series of related content exists across multiple pages.
 
 
 ## Simple list example
 
-
     import Bootstrap.Pagination as Pagination
     import Bootstrap.HAlign as HAlign
 
-
-    simplePaginationList: Model -> Html Msg
+    simplePaginationList : Model -> Html Msg
     simplePaginationList model =
         Pagination.defaultConfig
             |> Pagination.ariaLabel "Pagination"
@@ -44,13 +43,13 @@ module Bootstrap.Pagination exposing
 
 ## Customized pagination
 
-
     import Bootstrap.Pagination as Pagination
     import Bootstrap.Pagination as Item
     import Bootstrap.HAlign as HAlign
 
 
     -- Not you'll also need to fill in the pagination logic yourselves (not shown for brevity)
+
     customPagination : Model -> Html Msg
     customPagination model =
         let
@@ -71,7 +70,8 @@ module Bootstrap.Pagination exposing
                             |> Item.span [ class "custom-page-item" ]
                                 [ span
                                     [ class "fa fa-fast-backward"
-                                    , attribute "aria-hidden" "true" ]
+                                    , attribute "aria-hidden" "true"
+                                    ]
                                     []
                                 , span [ class "sr-only" ]
                                     [ text "First page" ]
@@ -89,7 +89,7 @@ module Bootstrap.Pagination exposing
                             ++ (List.indexedMap
                                     (\idx item ->
                                         Item.item
-                                            |> Item.active ( idx == model.activePageIdx )
+                                            |> Item.active (idx == model.activePageIdx)
                                             |> Item.span [ class "custom-page-item" ]
                                                 [ span
                                                     [ class <| "fa fa-" ++ item.icon
@@ -114,7 +114,8 @@ module Bootstrap.Pagination exposing
                                     |> Item.span [ class "custom-page-item" ]
                                         [ span
                                             [ class "fa fa-fast-forward"
-                                            , attribute "aria-hidden" "true" ]
+                                            , attribute "aria-hidden" "true"
+                                            ]
                                             []
                                         , span [ class "sr-only" ] [ text "Last page" ]
                                         ]
@@ -123,23 +124,19 @@ module Bootstrap.Pagination exposing
                     |> Pagination.view
                 ]
 
-
-
-
-
-
 @docs defaultConfig, view
 
+
 ## Customization
+
 @docs ariaLabel, small, large, attrs, listAttrs, align, items, Config
 
 
-
 ## Simple pagination lists
+
 @docs itemsList, ListItem, ListConfig
 
 -}
-
 
 import Bootstrap.Pagination.Item as Item
 import Bootstrap.Pagination.Internal as Internal
@@ -171,6 +168,7 @@ type Size
     | Small
     | Large
 
+
 {-| Provides a default configuration which you can configure further using the various customization functions.
 -}
 defaultConfig : Config msg
@@ -183,6 +181,7 @@ defaultConfig =
         , listAttrs = []
         , items = []
         }
+
 
 {-| Configure the pagination and its control to be larger.
 -}
@@ -211,6 +210,7 @@ size s (Config configRec) =
     Config <|
         { configRec | size = s }
 
+
 {-| Customize the root nav element with std. Html.Attribute(s) for the pagination.
 -}
 attrs : List (Html.Attribute msg) -> Config msg -> Config msg
@@ -226,8 +226,8 @@ listAttrs xs (Config configRec) =
     Config <|
         { configRec | listAttrs = xs }
 
-{-| Customize the horizontal alignment of the pagination components.
 
+{-| Customize the horizontal alignment of the pagination components.
 
     import Bootstrap.Pagination as Pagination
     import Bootstrap.General.HAlign as HAlign
@@ -235,6 +235,7 @@ listAttrs xs (Config configRec) =
 
     Pagination.defaultConfig
         |> Pagination.align HAlign.centerXs
+
 -}
 align : General.HAlign -> Config msg -> Config msg
 align hAlign (Config configRec) =
@@ -251,16 +252,18 @@ items xs (Config configRec) =
 
 
 {-| Record type for providing configuration for a simple pagination list with default behaviours/
-- **selectedMsg** - A msg that you use to keep track of the activeIdx in your model
-- **prevItem** - When provided will render a previous item link before the individual page items.
-- **nextItem** - When provided will render a next item link after the individual page items.
-- **activeIdx** - Index of currently active item in the items list.
-- **data** - List of actual data items (of any type)
-- **itemFn** - Callback function to allow you to specify what's rendered for the paginations individual page items
-- **urlFn** - Callback function to allow you to specify the href url for an individual pagination item
+
+  - **selectedMsg** - A msg that you use to keep track of the activeIdx in your model
+  - **prevItem** - When provided will render a previous item link before the individual page items.
+  - **nextItem** - When provided will render a next item link after the individual page items.
+  - **activeIdx** - Index of currently active item in the items list.
+  - **data** - List of actual data items (of any type)
+  - **itemFn** - Callback function to allow you to specify what's rendered for the paginations individual page items
+  - **urlFn** - Callback function to allow you to specify the href url for an individual pagination item
+
 -}
 type alias ListConfig a msg =
-    { selectedMsg : (Int -> msg)
+    { selectedMsg : Int -> msg
     , prevItem : Maybe (ListItem msg)
     , nextItem : Maybe (ListItem msg)
     , activeIdx : Int
@@ -268,6 +271,7 @@ type alias ListConfig a msg =
     , itemFn : Int -> a -> ListItem msg
     , urlFn : Int -> a -> String
     }
+
 
 {-| Record alias for describing a pagination page item.
 -}
@@ -277,12 +281,9 @@ type alias ListItem msg =
     }
 
 
-
 {-| Create a simple default pagination list.
 
-
     import Bootstrap.Pagination as Pagination
-
 
     viewPagination : Model -> Html Msg
     viewPagination model =

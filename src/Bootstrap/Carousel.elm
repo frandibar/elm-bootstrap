@@ -24,17 +24,26 @@ module Bootstrap.Carousel
 
 {-| A carousel is a slideshow for cycling through a series of content.
 
+
 # Model
+
 @docs State, StateOptions, initialState, initialStateWithOptions, defaultStateOptions, Cycling
 
+
 # Update
+
 @docs update, Msg, next, prev, toSlide, pause, cycle
 
+
 # View
+
 @docs Config, config, view, slides, withControls, withIndicators
 
+
 # Subscriptions
+
 @docs subscriptions
+
 -}
 
 import Html.Styled as Html exposing (Html, a, div, img, li, text, span)
@@ -71,9 +80,10 @@ type alias StateSettings =
 
 {-| Our state can be in three stages of animating
 
-* `NotAnimating`: No animation is happening. A new animation can be started
-* `Start`: Used to trigger proper css animations, Is swapped to Animating on the next animation frame. No new animation can be started
-* `Animating`: A transition is in progress. No new animation can be started.
+  - `NotAnimating`: No animation is happening. A new animation can be started
+  - `Start`: Used to trigger proper css animations, Is swapped to Animating on the next animation frame. No new animation can be started
+  - `Animating`: A transition is in progress. No new animation can be started.
+
 -}
 type TransitionStage a
     = Start a
@@ -91,9 +101,10 @@ type Transition
 
 {-| when to start automatically cycling the slides
 
-* `Paused`: frozen on the current slide
-* `Active`: immediately start cycling
-* `WaitForUser`: Wait for the user to perform one transition, then cycle automatically
+  - `Paused`: frozen on the current slide
+  - `Active`: immediately start cycling
+  - `WaitForUser`: Wait for the user to perform one transition, then cycle automatically
+
 -}
 type Cycling
     = Paused
@@ -143,7 +154,8 @@ defaultStateOptions =
             , pauseOnHover = False
         }
 
-    init = initialStateWithOptions myOptions
+    init =
+        initialStateWithOptions myOptions
 
 -}
 initialStateWithOptions : StateOptions -> State
@@ -176,8 +188,9 @@ initialState =
     subscriptions model =
         Carousel.subscriptions model.carouselState CarouselMsg
 
-* `state` The current view state of the carousel
-* `toMsg` Message constructor function that is used to step the view state forward
+  - `state` The current view state of the carousel
+  - `toMsg` Message constructor function that is used to step the view state forward
+
 -}
 subscriptions : State -> (Msg -> msg) -> Sub msg
 subscriptions model toMsg =
@@ -221,7 +234,7 @@ type Msg
 
 Typically called from your main update function
 
-    update : Msg -> Model -> (Model, Cmd Msg)
+    update : Msg -> Model -> ( Model, Cmd Msg )
     update message model =
         case message of
             CarouselMsg submsg ->
@@ -288,7 +301,6 @@ update message ((State tstage ({ currentIndex, size } as settings)) as model) =
 
 {-| Move the carousel to the next slide.
 
-
 Useful for implementing custom behavior, like transitioning when some key is pressed
 
     update : Msg -> Model -> (Model, Cmd Msg)
@@ -306,6 +318,7 @@ Useful for implementing custom behavior, like transitioning when some key is pre
                     )
 
 When the transition is invalid, nothing will happen.
+
 -}
 next : State -> State
 next =
@@ -315,6 +328,7 @@ next =
 {-| Move the carousel to the previous slide.
 
 When the transition is invalid, nothing will happen.
+
 -}
 prev : State -> State
 prev =
@@ -324,6 +338,7 @@ prev =
 {-| Move the carousel to the nth slide
 
 When the transition is invalid, nothing will happen.
+
 -}
 toSlide : Int -> State -> State
 toSlide n =
@@ -431,8 +446,9 @@ withControls (Config settings) =
             ]
         |> Carousel.view model.carouselState
 
-* `state` The current view state
-* `config` The configuration for the display of the carousel
+  - `state` The current view state
+  - `config` The configuration for the display of the carousel
+
 -}
 view : State -> Config msg -> Html msg
 view ((State tstage { hovering, currentIndex, wrap }) as model) (Config settings) =
@@ -463,7 +479,8 @@ view ((State tstage { hovering, currentIndex, wrap }) as model) (Config settings
 
         defaultCarouselAttributes =
             [ class "carousel slide"
-              -- catch the transitionend event, to end an ongoing transition
+
+            -- catch the transitionend event, to end an ongoing transition
             , on "transitionend" (Decode.succeed (settings.toMsg (EndTransition size)))
             ]
                 ++ (if hovering /= IgnoreHover then
@@ -481,8 +498,8 @@ view ((State tstage { hovering, currentIndex, wrap }) as model) (Config settings
 
 
 {-| In the State, we need to store the number of slides (the size), but we can't
-   have access to the number of slides outside of the view. Here, we trigger a browser
-   event (on page load, effectively) to get the number of slides into the update function, where it is stored in the State
+have access to the number of slides outside of the view. Here, we trigger a browser
+event (on page load, effectively) to get the number of slides into the update function, where it is stored in the State
 -}
 dirtyHack : Int -> Html Msg
 dirtyHack size =
@@ -544,10 +561,11 @@ transitionClassNames currentIndex transition =
 
 {-| Determine the correct classes for a slide
 
-* `index` the index of the slide that is rendered
-* `currentIndex` the current index of the carousel
-* `newIndex` index that the carousel animates to
-* `tstage` transition stage of the current animation
+  - `index` the index of the slide that is rendered
+  - `currentIndex` the current index of the carousel
+  - `newIndex` index that the carousel animates to
+  - `tstage` transition stage of the current animation
+
 -}
 transitionClasses : Int -> Int -> Int -> TransitionStage Transition -> List ( String, Bool )
 transitionClasses index currentIndex newIndex tstage =

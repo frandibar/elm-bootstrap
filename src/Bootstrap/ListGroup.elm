@@ -25,17 +25,20 @@ module Bootstrap.ListGroup
 
 {-| List groups are a flexible and powerful component for displaying a series of content. List group items can be modified and extended to support just about any content within. They can also be used as navigation with the right modifier class
 
+
 # Simple lists
+
 @docs ul, li, keyedUl, Item
 
 
 # Custom lists
+
 @docs custom, keyedCustom, anchor, button, CustomItem
 
 
 # Options
-@docs primary, secondary, success, info, warning, danger, light, dark, active, disabled, attrs, ItemOption
 
+@docs primary, secondary, success, info, warning, danger, light, dark, active, disabled, attrs, ItemOption
 
 -}
 
@@ -70,6 +73,7 @@ type alias CustomItem msg =
         [ ListGroup.li [ ListGroup.active ] [ text "Item 1"]
         , ListGroup.li [ ] [ text "Item 2" ]
         ]
+
 -}
 ul : List (Item msg) -> Html.Html msg
 ul items =
@@ -132,8 +136,9 @@ keyedCustom items =
 
 {-| Create a composable anchor list item for use in a custom list
 
-* `options` List of options to configure the list item
-* `children` List of child elements
+  - `options` List of options to configure the list item
+  - `children` List of child elements
+
 -}
 anchor :
     List (ItemOption msg)
@@ -156,8 +161,9 @@ anchor options children =
 
 {-| Create a composable button list item for use in a custom list
 
-* `options` List of options to configure the list item
-* `children` List of child elements
+  - `options` List of options to configure the list item
+  - `children` List of child elements
+
 -}
 button :
     List (ItemOption msg)
@@ -169,7 +175,6 @@ button options children =
         , children = children
         , options = Internal.Action :: (options ++ [ Internal.Attrs [ type_ "button" ] ])
         }
-
 
 
 {-| Option to style a list item with primary colors

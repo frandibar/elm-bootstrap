@@ -323,7 +323,7 @@ view visibility (Config ({ body, footer, options } as config)) =
     Html.div
         []
         ([ Html.div
-            ([ Attr.tabindex -1] ++ display visibility config)
+            ([ Attr.tabindex -1 ] ++ display visibility config)
             [ Html.div
                 ([ Attr.attribute "role" "document"
                  , Attr.class "elm-bootstrap-modal"
@@ -351,7 +351,7 @@ view visibility (Config ({ body, footer, options } as config)) =
         )
 
 
-containerClickDecoder: msg -> Json.Decoder msg
+containerClickDecoder : msg -> Json.Decoder msg
 containerClickDecoder closeMsg =
     DOM.target DOM.className
         |> Json.andThen

@@ -21,7 +21,7 @@ type Item msg
 
 
 type alias Link msg =
-    { htmlFn : (List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg)
+    { htmlFn : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
     , attrs : List (Html.Attribute msg)
     , children : List (Html.Html msg)
     }

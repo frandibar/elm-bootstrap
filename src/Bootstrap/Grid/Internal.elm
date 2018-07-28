@@ -287,10 +287,11 @@ colAttributes modifiers =
                 ]
             ++ case options.textAlign of
                 Just a ->
-                    [TextInternal.textAlignClass a]
+                    [ TextInternal.textAlignClass a ]
+
                 Nothing ->
                     []
-            ++ options.attributes
+                        ++ options.attributes
 
 
 rowAttributes : List (RowOption msg) -> List (Html.Attribute msg)

@@ -97,7 +97,6 @@ styledTable =
             ]
 
 
-
 styledThead : Test
 styledThead =
     let

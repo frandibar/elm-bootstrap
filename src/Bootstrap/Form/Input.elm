@@ -32,18 +32,19 @@ module Bootstrap.Form.Input
 
 
 # Input types
+
 @docs text, password, datetimeLocal, date, month, time, week, number, email, url, search, tel, color
 
 
-
-
 # Options
+
 @docs id, small, large, value, defaultValue, disabled, readonly, onInput, placeholder, attrs, Option
 
+
 # Validation
+
 You can indicate success or invalid input using these functions.
 @docs success, danger
-
 
 -}
 
@@ -285,12 +286,12 @@ disabled : Bool -> Option msg
 disabled disabled =
     Disabled disabled
 
+
 {-| Shorthand for setting the readonly attribute of an input
 -}
 readonly : Bool -> Option msg
 readonly readonly =
     Readonly readonly
-
 
 
 {-| Option to add a success marker icon for your input.
@@ -379,7 +380,6 @@ applyModifier modifier options =
 
         Readonly val ->
             { options | readonly = val }
-
 
         Attrs attrs ->
             { options | attributes = options.attributes ++ attrs }

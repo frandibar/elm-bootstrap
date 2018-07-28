@@ -27,20 +27,15 @@ module Bootstrap.Tab
 
 {-| Use tabs to create tabbable regions. Tabs uses view state, so there is a little bit of wiring needed to use them.
 
-    -- example with animation, you can drop the subscription part when not using animations
-
     type alias Model =
         { tabState : Tab.State }
 
-
     init : ( Model, Cmd Msg )
     init =
-        ( { tabState : Tab.initalState}, Cmd.none )
-
+        ( { tabState = Tab.initalState }, Cmd.none )
 
     type Msg
         = TabMsg Tab.State
-
 
     update : Msg -> Model -> ( Model, Cmd msg )
     update msg model =
@@ -53,7 +48,8 @@ module Bootstrap.Tab
     view : Model -> Html msg
     view model =
         Tab.config TabMsg
-            |> Tab.withAnimation -- remember to wire up subscriptions when using this option
+            |> Tab.withAnimation
+            -- remember to wire up subscriptions when using this option
             |> Tab.right
             |> Tab.items
                 [ Tab.item
@@ -69,26 +65,28 @@ module Bootstrap.Tab
                 ]
             |> Tab.view model.tabState
 
-
     subscriptions : Model -> Sub Msg
     subscriptions model =
         Tab.subscriptions model.tabState TabMsg
 
 
-
-
 # Tabs
+
 @docs view, config, items, initialState, customInitialState, Config, State
 
+
 # Options
+
 @docs pills, withAnimation, justified, fill, center, right, attrs, useHash, Option
 
+
 # Tab items
+
 @docs item, link, pane, Item, Link, Pane
 
 
-
 # With animations
+
 @docs subscriptions
 
 -}
@@ -138,10 +136,10 @@ type alias Options msg =
 
 {-| Configuration for a tabs control
 
-* `toMsg` Message constructor function used for transitioning view state
-* `options` Customization options for the tabs control
-* `withAnimation` Option to enable a simple fade in animation for tabs.
-* `items` List of tab items
+  - `toMsg` Message constructor function used for transitioning view state
+  - `options` Customization options for the tabs control
+  - `withAnimation` Option to enable a simple fade in animation for tabs.
+  - `items` List of tab items
 
 **NOTE** When using animations you must also remember to set up [`subscriptions`](#subscriptions)
 
@@ -192,8 +190,10 @@ type Pane msg
     subscriptions model =
         Sub.batch
             [ Tab.subscriptions model.tabState TabMsg
+
             --  ...other subscriptions you might have
             ]
+
 -}
 subscriptions : State -> (State -> msg) -> Sub msg
 subscriptions (State state) toMsg =
@@ -219,6 +219,7 @@ initialState =
 {-| Use this function if you want to initialize your tabs control with a specific tab selected.
 
 **NOTE: ** Should you specify an id not found, the first tab item will be displayd by default
+
 -}
 customInitialState : String -> State
 customInitialState id =
@@ -338,6 +339,7 @@ useHash use (Config config) =
                 }
             ]
         |> Tab.view model.tabState
+
 -}
 view : State -> Config msg -> Html.Html msg
 view state ((Config { items }) as config) =
@@ -528,9 +530,10 @@ applyModifier option options =
 
 {-| Create a composable tab item
 
-* `id` A unique id for the tab item
-* `link` The link/menu for the tab item
-* `pane` The content part of a tab item
+  - `id` A unique id for the tab item
+  - `link` The link/menu for the tab item
+  - `pane` The content part of a tab item
+
 -}
 item :
     { id : String
@@ -548,8 +551,9 @@ item { id, link, pane } =
 
 {-| Creates a composable tab menu item
 
-* `attributes`  List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 link : List (Html.Attribute msg) -> List (Html.Html msg) -> Link msg
 link attributes children =
@@ -561,8 +565,9 @@ link attributes children =
 
 {-| Creates a composable tab menu pane
 
-* `attributes`  List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 pane : List (Html.Attribute msg) -> List (Html.Html msg) -> Pane msg
 pane attributes children =

@@ -12,9 +12,7 @@ inputGroupWithPredecessorsAndSuccessors =
     let
         html =
             InputGroup.config
-                (InputGroup.text
-                    []
-                )
+                (InputGroup.text [])
                 |> InputGroup.predecessors
                     [ InputGroup.span [] [ Html.text "$" ] ]
                 |> InputGroup.successors
@@ -23,15 +21,15 @@ inputGroupWithPredecessorsAndSuccessors =
                 |> Html.toUnstyled
                 |> Query.fromHtml
     in
-    describe "Simple input group with predecessor and successor"
-        [ test "ensure predecessor has correct class" <|
-            \() ->
-                html
-                    |> Query.find [ class "input-group-prepend" ]
-                    |> Query.has [ text "$" ]
-        , test "ensure successor has correct class" <|
-            \() ->
-                html
-                    |> Query.find [ class "input-group-append" ]
-                    |> Query.has [ text ".00" ]
-        ]
+        describe "Simple input group with predecessor and successor"
+            [ test "ensure predecessor has correct class" <|
+                \() ->
+                    html
+                        |> Query.find [ class "input-group-prepend" ]
+                        |> Query.has [ text "$" ]
+            , test "ensure successor has correct class" <|
+                \() ->
+                    html
+                        |> Query.find [ class "input-group-append" ]
+                        |> Query.has [ text ".00" ]
+            ]

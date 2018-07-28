@@ -17,15 +17,18 @@ module Bootstrap.Form.Textarea
 
 
 # Creating
+
 @docs textarea
 
 
 # Options
+
 @docs id, rows, value, defaultValue, disabled, onInput, attrs, Option
 
-# Validation
-@docs success, danger
 
+# Validation
+
+@docs success, danger
 
 -}
 

@@ -1,51 +1,55 @@
-module Bootstrap.Card.Block exposing
-    ( align
-    , primary
-    , secondary
-    , success
-    , info
-    , warning
-    , danger
-    , light
-    , dark
-    , textColor
-    , attrs
-    , link
-    , text
-    , quote
-    , custom
-    , titleH1
-    , titleH2
-    , titleH3
-    , titleH4
-    , titleH5
-    , titleH6
-    , Option
-    , Item
-    )
+module Bootstrap.Card.Block
+    exposing
+        ( align
+        , primary
+        , secondary
+        , success
+        , info
+        , warning
+        , danger
+        , light
+        , dark
+        , textColor
+        , attrs
+        , link
+        , text
+        , quote
+        , custom
+        , titleH1
+        , titleH2
+        , titleH3
+        , titleH4
+        , titleH5
+        , titleH6
+        , Option
+        , Item
+        )
 
 {-| Blocks are the main content elements withing a Card.
 
 
 # Title
+
 @docs titleH1, titleH2, titleH3, titleH4, titleH5, titleH6
 
 
 # Items
+
 @docs link, text, quote, custom, Item
 
+
 # Options
+
 @docs align, primary, secondary, success, info, warning, danger, light, dark, textColor, attrs, Option
 
-
 -}
-
 
 import Html.Styled as Html
 import Html.Styled.Attributes exposing (class)
 import Bootstrap.Card.Internal as Internal
 import Bootstrap.Text as Text
 import Bootstrap.Internal.Role as Role
+
 
 {-| Opaque type representing options for styling a card block
 -}
@@ -59,12 +63,11 @@ type alias Item msg =
     Internal.BlockItem msg
 
 
-
-
 {-| Create link elements that are placed next to each other in a block using this function
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 link : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 link attributes children =
@@ -76,8 +79,9 @@ link attributes children =
 
 {-| Create a card text element
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 text : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 text attributes children =
@@ -96,8 +100,9 @@ custom element =
 
 {-| Create a block quote element
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 quote : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 quote attributes children =
@@ -109,8 +114,9 @@ quote attributes children =
 
 {-| Create a block h1 title
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 titleH1 : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 titleH1 =
@@ -119,8 +125,9 @@ titleH1 =
 
 {-| Create a block h2 title
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 titleH2 : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 titleH2 =
@@ -129,8 +136,9 @@ titleH2 =
 
 {-| Create a block h3 title
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 titleH3 : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 titleH3 =
@@ -139,8 +147,9 @@ titleH3 =
 
 {-| Create a block h4 title
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 titleH4 : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 titleH4 =
@@ -149,8 +158,9 @@ titleH4 =
 
 {-| Create a block h5 title
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 titleH5 : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 titleH5 =
@@ -159,8 +169,9 @@ titleH5 =
 
 {-| Create a block h6 title
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 titleH6 : List (Html.Attribute msg) -> List (Html.Html msg) -> Item msg
 titleH6 =
@@ -177,7 +188,6 @@ title elemFn attributes children =
         |> Internal.BlockItem
 
 
-
 {-| Option to specify horizontal alignment of a card block item
 
     Block.align Text.xs
@@ -186,7 +196,6 @@ title elemFn attributes children =
 align : Text.HAlign -> Option msg
 align align =
     Internal.AlignedBlock align
-
 
 
 {-| Give blocks a primary background color
@@ -201,6 +210,7 @@ primary =
 secondary : Option msg
 secondary =
     Internal.BlockColoring Role.Secondary
+
 
 {-| Give blocks a success background color
 -}
@@ -229,6 +239,7 @@ danger : Option msg
 danger =
     Internal.BlockColoring Role.Danger
 
+
 {-| Give blocks a light background color
 -}
 light : Option msg
@@ -243,7 +254,8 @@ dark =
     Internal.BlockColoring Role.Dark
 
 
-{-| Set the text color used within a block. |-}
+{-| Set the text color used within a block. |
+-}
 textColor : Text.Color -> Option msg
 textColor color =
     Internal.BlockTextColoring color
@@ -254,5 +266,3 @@ textColor color =
 attrs : List (Html.Attribute msg) -> Option msg
 attrs attrs =
     Internal.BlockAttrs attrs
-
-

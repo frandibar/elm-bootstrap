@@ -22,16 +22,22 @@ module Bootstrap.Form.Radio
 
 
 # Creating
+
 @docs radio, custom, Radio
 
+
 # Options
+
 @docs id, checked, name, inline, onClick, disabled, attrs, Option
 
 
 # Validation
+
 @docs success, danger
 
+
 # Composing
+
 @docs radioList, create, createCustom, Radio
 
 -}
@@ -133,9 +139,9 @@ This function is a convenient helper to create a list of radios
             "Radio 3"
         ]
 
+  - `groupName` - Name of the radios, all radios will get the same name
+  - `radios` - List of radios.
 
-* `groupName` - Name of the radios, all radios will get the same name
-* `radios` - List of radios.
 -}
 radioList :
     String
@@ -174,7 +180,6 @@ view (Radio radio) =
     let
         opts =
             List.foldl applyModifier defaultOptions radio.options
-
     in
         Html.div
             [ Attributes.classList
@@ -201,7 +206,6 @@ view (Radio radio) =
                 )
                 [ Html.text radio.label ]
             ]
-
 
 
 {-| Shorthand for assigning an onClick handler for a radio.
@@ -236,6 +240,7 @@ inline =
 
 A single radio doesn't make much sense, typically you would have several. To automatically
 unselect one radio, when selecting another you need to have the same name for each radio in a group.
+
 -}
 name : String -> Option msg
 name name =
@@ -257,7 +262,6 @@ NOTE: You have to use this for custom checkboxes.
 id : String -> Option msg
 id theId =
     Id theId
-
 
 
 {-| Option to color a radio with success.

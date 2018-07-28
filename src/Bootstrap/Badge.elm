@@ -20,12 +20,15 @@ module Bootstrap.Badge
 
 {-| Small and adaptive badge for adding context to just about any content.
 
+
 # Tags
+
 @docs badgePrimary, badgeSecondary, badgeSuccess, badgeInfo, badgeWarning, badgeDanger, badgeLight, badgeDark
 
 
 # Pills
-@docs  pillPrimary, pillSecondary, pillSuccess, pillInfo, pillWarning, pillDanger, pillLight, pillDark
+
+@docs pillPrimary, pillSecondary, pillSuccess, pillInfo, pillWarning, pillDanger, pillLight, pillDark
 
 -}
 
@@ -51,11 +54,10 @@ type BadgeOption
     | Pill
 
 
-
 {-| Create a badge with primary colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgePrimary :
@@ -68,8 +70,8 @@ badgePrimary =
 
 {-| Create a badge with secondary colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeSecondary : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -77,12 +79,10 @@ badgeSecondary =
     badgeInternal [ Roled Secondary ]
 
 
-
-
 {-| Create a badge with success colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeSuccess :
@@ -95,8 +95,8 @@ badgeSuccess =
 
 {-| Create a badge with info colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeInfo : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -106,8 +106,8 @@ badgeInfo =
 
 {-| Create a badge with warning colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeWarning :
@@ -120,8 +120,8 @@ badgeWarning =
 
 {-| Create a badge with danger colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeDanger : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -131,8 +131,8 @@ badgeDanger =
 
 {-| Create a light badge
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeLight : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -142,8 +142,8 @@ badgeLight =
 
 {-| Create a dark badge
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 badgeDark : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -153,8 +153,8 @@ badgeDark =
 
 {-| Create a pill with primary colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillPrimary :
@@ -167,8 +167,8 @@ pillPrimary =
 
 {-| Create a pill (badge with rounded corners) using secondary coloring
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillSecondary : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -176,11 +176,10 @@ pillSecondary =
     badgeInternal [ Roled Secondary, Pill ]
 
 
-
 {-| Create a pill with success colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillSuccess :
@@ -193,8 +192,8 @@ pillSuccess =
 
 {-| Create a pill with info colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillInfo : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -204,8 +203,8 @@ pillInfo =
 
 {-| Create a pill with warning colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillWarning :
@@ -218,8 +217,8 @@ pillWarning =
 
 {-| Create a pill with danger colors
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillDanger : List (Html.Attribute msg) -> List (Html.Html msg) -> Html.Html msg
@@ -229,8 +228,8 @@ pillDanger =
 
 {-| Create a light pill
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillLight :
@@ -243,8 +242,8 @@ pillLight =
 
 {-| Create a dark pill
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
 
 -}
 pillDark :
@@ -253,8 +252,6 @@ pillDark :
     -> Html.Html msg
 pillDark =
     badgeInternal [ Roled Dark, Pill ]
-
-
 
 
 badgeInternal :
@@ -310,7 +307,3 @@ roleOption role =
 
         Dark ->
             "badge-dark"
-
-
-
-

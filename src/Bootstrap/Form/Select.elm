@@ -19,12 +19,17 @@ module Bootstrap.Form.Select
 
 
 # Creating
+
 @docs select, custom, item, Item
 
+
 # Options
+
 @docs id, small, large, id, disabled, onChange, attrs, Option
 
+
 # Validation
+
 @docs success, danger
 
 -}
@@ -33,7 +38,7 @@ import Html.Styled as Html
 import Html.Styled.Attributes as Attributes
 import Html.Styled.Events as Events
 import Json.Decode as Json
-import Bootstrap.General.Internal exposing (ScreenSize (..), screenSizeOption)
+import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Form.FormInternal as FormInternal
 
 
@@ -154,6 +159,7 @@ onChange : (String -> msg) -> Option msg
 onChange toMsg =
     OnChange toMsg
 
+
 {-| Option to add a success marker icon for your select.
 -}
 success : Option msg
@@ -166,7 +172,6 @@ success =
 danger : Option msg
 danger =
     Validation FormInternal.Danger
-
 
 
 customEventOnChange : (String -> msg) -> Html.Attribute msg
@@ -252,6 +257,7 @@ sizeAttribute isCustom size =
         Maybe.map
             (\s -> Attributes.class <| prefix ++ s)
             (screenSizeOption size)
+
 
 validationAttribute : FormInternal.Validation -> Html.Attribute msg
 validationAttribute validation =

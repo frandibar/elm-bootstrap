@@ -15,7 +15,6 @@ type Role
     | Dark
 
 
-
 toClass : String -> Role -> Html.Attribute msg
 toClass prefix role =
     class <|

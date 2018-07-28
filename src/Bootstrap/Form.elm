@@ -64,6 +64,7 @@ type Col msg
         , children : List (Html.Html msg)
         }
 
+
 {-| Opaque type representing options for customing form groups.
 -}
 type Option msg

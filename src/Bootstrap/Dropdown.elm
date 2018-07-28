@@ -154,6 +154,7 @@ in your model and it's initialized by [`initialState`](#initialState)
 type State
     = State StateRec
 
+
 type alias StateRec =
     { status : DropdownStatus
     , toggleSize : DOM.Rectangle
@@ -254,11 +255,13 @@ alignMenuRight : DropdownOption msg
 alignMenuRight =
     AlignMenuRight
 
+
 {-| Show menu to the right of the button.
 -}
 dropRight : DropdownOption msg
 dropRight =
     DropToDir <| Dropright
+
 
 {-| Show menu to the left of the button.
 -}
@@ -312,7 +315,7 @@ dropdown :
         , items : List (DropdownItem msg)
         }
     -> Html.Html msg
-dropdown ((State {status}) as state) { toggleMsg, toggleButton, items, options } =
+dropdown ((State { status }) as state) { toggleMsg, toggleButton, items, options } =
     let
         (DropdownToggle buttonFn) =
             toggleButton
@@ -357,13 +360,12 @@ dropDir maybeDir =
             |> Maybe.withDefault []
 
 
-
 dropdownMenu :
     State
     -> Options msg
     -> List (DropdownItem msg)
     -> Html.Html msg
-dropdownMenu (State {status, menuSize} as state) config items =
+dropdownMenu ((State { status, menuSize }) as state) config items =
     let
         wrapperStyle =
             if status == Closed then
@@ -391,33 +393,36 @@ dropdownMenu (State {status, menuSize} as state) config items =
 
 
 menuStyle : State -> Options msg -> Html.Attribute msg
-menuStyle (State {status, toggleSize, menuSize}) config =
+menuStyle (State { status, toggleSize, menuSize }) config =
     let
-        default
-            = [ ( "top", "0" ), ( "left", "0" ) ]
+        default =
+            [ ( "top", "0" ), ( "left", "0" ) ]
+
         px n =
             toString n ++ "px"
 
         translate x y z =
             "translate3d("
-                ++ px x ++ ","
-                ++ px y ++ ","
-                ++ px z ++ ")"
+                ++ px x
+                ++ ","
+                ++ px y
+                ++ ","
+                ++ px z
+                ++ ")"
     in
         style <|
-         case (config.isDropUp, config.dropDirection) of
-            (True, _) ->
-                default ++ [("transform", translate -toggleSize.width -menuSize.height 0)]
+            case ( config.isDropUp, config.dropDirection ) of
+                ( True, _ ) ->
+                    default ++ [ ( "transform", translate -toggleSize.width -menuSize.height 0 ) ]
 
-            (_, Just Dropright) ->
-                default
+                ( _, Just Dropright ) ->
+                    default
 
-            (_, Just Dropleft) ->
-                default ++ [("transform", translate (-toggleSize.width - menuSize.width) 0 0)]
+                ( _, Just Dropleft ) ->
+                    default ++ [ ( "transform", translate (-toggleSize.width - menuSize.width) 0 0 ) ]
 
-            _ ->
-                default ++ [("transform", translate -toggleSize.width toggleSize.height 0)]
-
+                _ ->
+                    default ++ [ ( "transform", translate -toggleSize.width toggleSize.height 0 ) ]
 
 
 {-| Function to construct a toggle for a [`dropdown`](#dropdown)
@@ -471,7 +476,7 @@ splitDropdown :
         , items : List (DropdownItem msg)
         }
     -> Html.Html msg
-splitDropdown ((State {status}) as state) { toggleMsg, toggleButton, items, options } =
+splitDropdown ((State { status }) as state) { toggleMsg, toggleButton, items, options } =
     let
         (SplitDropdownToggle buttonsFn) =
             toggleButton
@@ -642,7 +647,7 @@ automatically closed when you click outside them.
 
 -}
 subscriptions : State -> (State -> msg) -> Sub msg
-subscriptions (State {status} as state) toMsg =
+subscriptions ((State { status }) as state) toMsg =
     case status of
         Open ->
             AnimationFrame.times
@@ -656,12 +661,11 @@ subscriptions (State {status} as state) toMsg =
             Sub.none
 
 
-
 clickHandler : (State -> msg) -> State -> Json.Decoder msg
-clickHandler toMsg (State {status} as state) =
+clickHandler toMsg ((State { status }) as state) =
     sizeDecoder
         |> Json.andThen
-            (\(b,m) ->
+            (\( b, m ) ->
                 Json.succeed <|
                     toMsg <|
                         State
@@ -672,7 +676,7 @@ clickHandler toMsg (State {status} as state) =
             )
 
 
-sizeDecoder : Json.Decoder (DOM.Rectangle, DOM.Rectangle)
+sizeDecoder : Json.Decoder ( DOM.Rectangle, DOM.Rectangle )
 sizeDecoder =
     Json.map2 (,)
         (toggler [ "target" ] DOM.boundingClientRect)
@@ -682,7 +686,6 @@ sizeDecoder =
                     DOM.boundingClientRect
             )
         )
-
 
 
 toggler : List String -> Json.Decoder a -> Json.Decoder a
@@ -715,13 +718,13 @@ isToggle =
             )
 
 
-
 toggleOpen : (State -> msg) -> State -> msg
 toggleOpen toMsg ((State { status }) as state) =
     toMsg <|
         updateStatus
             (nextStatus status)
             state
+
 
 nextStatus : DropdownStatus -> DropdownStatus
 nextStatus status =
@@ -738,4 +741,4 @@ nextStatus status =
 
 updateStatus : DropdownStatus -> State -> State
 updateStatus status (State stateRec) =
-    State {stateRec | status = status }
+    State { stateRec | status = status }

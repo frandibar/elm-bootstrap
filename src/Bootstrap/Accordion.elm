@@ -32,7 +32,6 @@ module Bootstrap.Accordion
 
 {-| An accordion is a group of stacked cards where you can toggle the visibility (slide up/down) of each card
 
-
     type alias Model =
         { accordionState = Accordion.state }
 
@@ -92,17 +91,19 @@ module Bootstrap.Accordion
         Accordion.subscriptions model.accordionState AccordionMsg
 
 
-
 ## Accordion
+
 @docs view, config, cards, withAnimation, onlyOneOpen, isOpen, Config, initialState, initialStateCardOpen, State
 
+
 ## Contents
+
 @docs card, block, listGroup, header, toggle, headerH1, headerH2, headerH3, headerH4, headerH5, headerH6, appendHeader, prependHeader, Card, CardBlock, Header, Toggle
 
 
 ## Animation
-@docs subscriptions
 
+@docs subscriptions
 
 -}
 
@@ -121,9 +122,10 @@ import Bootstrap.ListGroup as ListGroup
 
 {-| Opaque type that defines the view configuration information of your accordion
 
-* You create an initial configuration by calling the [`config`](#config) function
-* The [`withAnimtion`](#withAnimation) function allows you to define that the contents of cards should animate up/down
-* The [`cards`](#cards) function defines the  List of cards to be displayed
+  - You create an initial configuration by calling the [`config`](#config) function
+  - The [`withAnimtion`](#withAnimation) function allows you to define that the contents of cards should animate up/down
+  - The [`cards`](#cards) function defines the List of cards to be displayed
+
 -}
 type Config msg
     = Config
@@ -211,8 +213,9 @@ type Header msg
     subscriptions model =
         Accordion.subscriptions model.accordionState AccordionMsg
 
-* `state` The current view state of the accordion
-* `toMsg` Message constructor function that is used to step the view state forward
+  - `state` The current view state of the accordion
+  - `toMsg` Message constructor function that is used to step the view state forward
+
 -}
 subscriptions : State -> (State -> msg) -> Sub msg
 subscriptions (State cardStates) toMsg =
@@ -237,7 +240,7 @@ subscriptions (State cardStates) toMsg =
             Dict.toList cardStates
                 |> List.any
                     (\( _, state ) ->
-                        List.member state.visibility [ StartDown, StartUp]
+                        List.member state.visibility [ StartDown, StartUp ]
                     )
     in
         if needsSub then
@@ -247,7 +250,6 @@ subscriptions (State cardStates) toMsg =
 
 
 {-| Creates an initial/default view configuration for an accordion.
-
 -}
 config : (State -> msg) -> Config msg
 config toMsg =
@@ -263,12 +265,12 @@ config toMsg =
 
 *Note*: You must remember to hook up the [`subscriptions`](#subscriptions) function
 when using this option.
+
 -}
 withAnimation : Config msg -> Config msg
 withAnimation (Config config) =
     Config
         { config | withAnimation = True }
-
 
 
 {-| Set option for only allowing one (or zero) open cards at any one time.
@@ -282,11 +284,12 @@ onlyOneOpen (Config config) =
 {-| Check if given card is open/expanded (or when animating, on it's way to become open/expanded).
 
 **NOTE: If you give a non-existing id it will return False (:**
+
 -}
 isOpen : String -> State -> Bool
 isOpen id (State cardStates) =
     case Dict.get id cardStates of
-        Just {visibility} ->
+        Just { visibility } ->
             (visibility == Shown || visibility == StartDown)
 
         Nothing ->
@@ -303,10 +306,9 @@ isOpen id (State cardStates) =
             ]
         |> Accordion.view model.accordionState
 
+  - `state` The current view state
+  - `config` The configuration for the display of the accordion
 
-
-* `state` The current view state
-* `config` The configuration for the display of the accordion
 -}
 view :
     State
@@ -328,11 +330,12 @@ cards cards (Config config) =
 
 {-| Creates a card item for use in an accordion
 
-* card config record
-    * `id` Unique id for your card
-    * `options` List of card styling options
-    * `header` Card header containing a toggle to hide/show the details of a card
-    * `blocks` The main content elements of the card
+  - card config record
+      - `id` Unique id for your card
+      - `options` List of card styling options
+      - `header` Card header containing a toggle to hide/show the details of a card
+      - `blocks` The main content elements of the card
+
 -}
 card :
     { id : String
@@ -352,8 +355,9 @@ card { id, options, header, blocks } =
 
 {-| Creates a card toggle element used for toggling the display of the main content of your cards
 
-* `attributes` List of attributes
-* `children` List of child elements
+  - `attributes` List of attributes
+  - `children` List of child elements
+
 -}
 toggle : List (Html.Attribute msg) -> List (Html.Html msg) -> Toggle msg
 toggle attributes children =
@@ -368,8 +372,8 @@ element which will be responsible for display/hide the details of an individual 
 
 You may optionally [`prepend`](#prependHeader) or [`append`](#appendHeader) children to the header for further customization.
 
-* attributes - List of attributes
-* toggle - A toggle element
+  - attributes - List of attributes
+  - toggle - A toggle element
 
 -}
 header : List (Html.Attribute msg) -> Toggle msg -> Header msg
@@ -450,12 +454,11 @@ headerPrivate elemFn attributes toggle =
 
 {-| Create a block element for use in an accordion card.
 
-
     Accordion.block []
         [ Block.text [] [ text "Just some text"] ]
 
-* `blockOptions` List of block options
-* `blockItems` List of block items
+  - `blockOptions` List of block options
+  - `blockItems` List of block items
 
 -}
 block :
@@ -474,7 +477,8 @@ List groups are block elements just like [`block`](#block)
         , ListGroup.li [] [ text "Item 2" ]
         ]
 
-* `items` List of List group items
+  - `items` List of List group items
+
 -}
 listGroup :
     List (ListGroup.Item msg)
@@ -569,16 +573,13 @@ clickHandler ((State cardStates) as state) (Config { toMsg, withAnimation, onlyO
                         }
                     else if c.visibility == Shown && withAnimation == True && onlyOneOpen == True then
                         { c | visibility = StartUp }
-
                     else if c.visibility == Shown && withAnimation == False && onlyOneOpen == True then
                         { c | visibility = Hidden }
-
                     else
                         c
                 )
                 initStates
                 |> State
-
     in
         decoder
             |> Json.andThen
@@ -639,7 +640,7 @@ animationAttributes :
     -> Config msg
     -> Card msg
     -> List (Html.Attribute msg)
-animationAttributes state (Config {withAnimation}) ((Card { id }) as card) =
+animationAttributes state (Config { withAnimation }) ((Card { id }) as card) =
     let
         cardState =
             getOrInitCardState id state
@@ -648,7 +649,8 @@ animationAttributes state (Config {withAnimation}) ((Card { id }) as card) =
             Maybe.map (\v -> (toString v) ++ "px") cardState.height
                 |> Maybe.withDefault "0"
 
-        styles = transitionStyle withAnimation
+        styles =
+            transitionStyle withAnimation
     in
         case cardState.visibility of
             Hidden ->
@@ -667,9 +669,6 @@ animationAttributes state (Config {withAnimation}) ((Card { id }) as card) =
 
                     Nothing ->
                         [ styles "100%" ]
-
-
-
 
 
 transitionStyle : Bool -> String -> Html.Attribute msg

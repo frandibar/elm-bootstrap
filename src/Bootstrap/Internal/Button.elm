@@ -7,8 +7,8 @@ module Bootstrap.Internal.Button
         )
 
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
-import Html
-import Html.Attributes as Attributes exposing (class, classList)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (class, classList)
 
 
 type Option msg

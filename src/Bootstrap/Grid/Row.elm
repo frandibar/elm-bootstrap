@@ -19,7 +19,7 @@ module Bootstrap.Grid.Row exposing (..)
 
 -}
 
-import Html
+import Html.Styled as Html
 import Bootstrap.Grid.Internal as Internal exposing (..)
 import Bootstrap.General.Internal exposing (ScreenSize(..), HorizontalAlign(..))
 

@@ -9,8 +9,8 @@ module Bootstrap.CDN exposing (stylesheet, fontAwesome)
 
 -}
 
-import Html exposing (Html, node)
-import Html.Attributes exposing (rel, href)
+import Html.Styled exposing (Html, node)
+import Html.Styled.Attributes exposing (rel, href)
 
 
 {-| Allows you to embed the Bootstrap CSS as a node in your view.

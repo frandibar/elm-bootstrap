@@ -1,7 +1,7 @@
 module Bootstrap.Card.Internal exposing (..)
 
-import Html
-import Html.Attributes exposing (class)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 import Bootstrap.Internal.Text as Text
 import Bootstrap.Internal.ListGroup as ListGroup
 import Bootstrap.Internal.Role as Role

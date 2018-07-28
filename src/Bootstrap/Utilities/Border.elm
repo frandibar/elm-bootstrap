@@ -17,8 +17,8 @@ module Bootstrap.Utilities.Border exposing (..)
 
 -}
 
-import Html.Attributes exposing (class)
-import Html exposing (Attribute)
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes exposing (class)
 import Bootstrap.Internal.Role as Role
 
 

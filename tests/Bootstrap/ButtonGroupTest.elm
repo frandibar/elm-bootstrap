@@ -2,7 +2,7 @@ module Bootstrap.ButtonGroupTest exposing (..)
 
 import Bootstrap.ButtonGroup as ButtonGroup
 import Bootstrap.Button as Button
-import Html
+import Html.Styled as Html
 import Html.Attributes as Attr
 import Test exposing (Test, test, describe)
 import Test.Html.Query as Query
@@ -17,17 +17,17 @@ simpleGroup =
                 [ ButtonGroup.button [] [ Html.text "First" ]
                 , ButtonGroup.button [] [ Html.text "Second" ]
                 ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Simple group"
             [ test "expect btn-group" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has [ tag "div", class "btn-group", attribute <| Attr.attribute "role" "group" ]
             , test "expect btn class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag "button" ]
                         |> Query.each
                             (Query.has [ class "btn" ])
@@ -40,12 +40,13 @@ groupWithOptions =
         html =
             ButtonGroup.buttonGroup [ ButtonGroup.small, ButtonGroup.vertical ]
                 [ ButtonGroup.button [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Optioned group"
             [ test "expect classes" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has
                             [ classes
                                 [ "btn-group"
@@ -56,9 +57,8 @@ groupWithOptions =
             , test "Expect button classes" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.first
+                        |> Query.index 1
                         |> Query.has
                             [ class "btn-primary"
                             , text "First"
@@ -72,14 +72,15 @@ linkGroup =
         html =
             ButtonGroup.linkButtonGroup []
                 [ ButtonGroup.linkButton [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Link group"
             [ test "Expect button classes" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.first
+                        |> Query.index 1
                         |> Query.has
                             [ tag "a"
                             , class "btn-primary"
@@ -94,14 +95,15 @@ checkGroup =
         html =
             ButtonGroup.checkboxButtonGroup []
                 [ ButtonGroup.checkboxButton False [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Checkbox group"
             [ test "Except label with classes" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.first
+                        |> Query.index 1
                         |> Query.has
                             [ tag "label"
                             , class "btn-primary"
@@ -110,9 +112,8 @@ checkGroup =
             , test "Expect checkbox input" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.index 0
+                        |> Query.index 1
                         |> Query.children []
                         |> Query.index 0
                         |> Query.has
@@ -129,14 +130,15 @@ radioGroup =
         html =
             ButtonGroup.radioButtonGroup []
                 [ ButtonGroup.radioButton False [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Radio group"
             [ test "Except label with classes" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.first
+                        |> Query.index 1
                         |> Query.has
                             [ tag "label"
                             , class "btn-primary"
@@ -145,9 +147,8 @@ radioGroup =
             , test "Expect radio input" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.index 0
+                        |> Query.index 1
                         |> Query.children []
                         |> Query.index 0
                         |> Query.has
@@ -166,12 +167,13 @@ toolbar =
                 [ ButtonGroup.buttonGroupItem []
                     [ ButtonGroup.button [] [ Html.text "Button" ] ]
                 ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Toolbar"
             [ test "expect toolbar" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has
                             [ tag "div"
                             , class "btn-toolbar"
@@ -179,9 +181,8 @@ toolbar =
             , test "Expect button group" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.index 0
+                        |> Query.index 1
                         |> Query.has
                             [ tag "div"
                             , class "btn-group"
@@ -189,9 +190,8 @@ toolbar =
             , test "Expect button" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children []
-                        |> Query.index 0
+                        |> Query.index 1
                         |> Query.children []
                         |> Query.index 0
                         |> Query.has

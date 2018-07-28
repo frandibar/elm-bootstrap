@@ -47,9 +47,9 @@ You can indicate success or invalid input using these functions.
 
 -}
 
-import Html
-import Html.Attributes as Attributes
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
+import Html.Styled.Events as Events
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Form.FormInternal as FormInternal
 

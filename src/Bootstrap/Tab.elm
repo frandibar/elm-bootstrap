@@ -94,9 +94,9 @@ module Bootstrap.Tab
 -}
 
 import AnimationFrame as AnimationFrame
-import Html
-import Html.Attributes as Attributes exposing (class, classList, href, style)
-import Html.Events exposing (onWithOptions, on)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (class, classList, href, style)
+import Html.Styled.Events exposing (onWithOptions, on)
 import Json.Decode as Json
 
 

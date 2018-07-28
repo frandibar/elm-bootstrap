@@ -10,8 +10,8 @@ module Bootstrap.Utilities.Spacing exposing (..)
 @docs p0, p1, p2, p3, p4, p5, pt0, pt1, pt2, pt3, pt4, pt5, pb0, pb1, pb2, pb3, pb4, pb5, pl0, pl1, pl2, pl3, pl4, pl5, pr0, pr1, pr2, pr3, pr4, pr5, px0, px1, px2, px3, px4, px5, py0, py1, py2, py3, py4, py5, p0Sm, p1Sm, p2Sm, p3Sm, p4Sm, p5Sm, pt0Sm, pt1Sm, pt2Sm, pt3Sm, pt4Sm, pt5Sm, pb0Sm, pb1Sm, pb2Sm, pb3Sm, pb4Sm, pb5Sm, pl0Sm, pl1Sm, pl2Sm, pl3Sm, pl4Sm, pl5Sm, pr0Sm, pr1Sm, pr2Sm, pr3Sm, pr4Sm, pr5Sm, px0Sm, px1Sm, px2Sm, px3Sm, px4Sm, px5Sm, py0Sm, py1Sm, py2Sm, py3Sm, py4Sm, py5Sm, p0Md, p1Md, p2Md, p3Md, p4Md, p5Md, pt0Md, pt1Md, pt2Md, pt3Md, pt4Md, pt5Md, pb0Md, pb1Md, pb2Md, pb3Md, pb4Md, pb5Md, pl0Md, pl1Md, pl2Md, pl3Md, pl4Md, pl5Md, pr0Md, pr1Md, pr2Md, pr3Md, pr4Md, pr5Md, px0Md, px1Md, px2Md, px3Md, px4Md, px5Md, py0Md, py1Md, py2Md, py3Md, py4Md, py5Md, p0Lg, p1Lg, p2Lg, p3Lg, p4Lg, p5Lg, pt0Lg, pt1Lg, pt2Lg, pt3Lg, pt4Lg, pt5Lg, pb0Lg, pb1Lg, pb2Lg, pb3Lg, pb4Lg, pb5Lg, pl0Lg, pl1Lg, pl2Lg, pl3Lg, pl4Lg, pl5Lg, pr0Lg, pr1Lg, pr2Lg, pr3Lg, pr4Lg, pr5Lg, px0Lg, px1Lg, px2Lg, px3Lg, px4Lg, px5Lg, py0Lg, py1Lg, py2Lg, py3Lg, py4Lg, py5Lg, p0Xl, p1Xl, p2Xl, p3Xl, p4Xl, p5Xl, pt0Xl, pt1Xl, pt2Xl, pt3Xl, pt4Xl, pt5Xl, pb0Xl, pb1Xl, pb2Xl, pb3Xl, pb4Xl, pb5Xl, pl0Xl, pl1Xl, pl2Xl, pl3Xl, pl4Xl, pl5Xl, pr0Xl, pr1Xl, pr2Xl, pr3Xl, pr4Xl, pr5Xl, px0Xl, px1Xl, px2Xl, px3Xl, px4Xl, px5Xl, py0Xl, py1Xl, py2Xl, py3Xl, py4Xl, py5Xl
 -}
 
-import Html.Attributes exposing (class)
-import Html exposing (Attribute)
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes exposing (class)
 
 
 {-| Set margin to 0.

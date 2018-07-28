@@ -175,9 +175,9 @@ is a few more things you must wire-up and keep in mind.
 
 -}
 
-import Html
-import Html.Attributes as Attr
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
+import Html.Styled.Events as Events
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import AnimationFrame
 import Json.Decode as Json

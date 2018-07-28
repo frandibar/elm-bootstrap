@@ -139,9 +139,9 @@ bit of wiring involved when using them in your Elm Application.
 
 import Bootstrap.Button as Button
 import Bootstrap.Internal.Button as ButtonInternal
-import Html
-import Html.Attributes exposing (class, classList, type_, id, href, style)
-import Html.Events exposing (onClick, on, onWithOptions)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, classList, type_, id, href, style)
+import Html.Styled.Events exposing (onClick, on, onWithOptions)
 import Mouse
 import AnimationFrame
 import Json.Decode as Json

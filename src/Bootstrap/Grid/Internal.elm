@@ -1,7 +1,7 @@
 module Bootstrap.Grid.Internal exposing (..)
 
-import Html
-import Html.Attributes exposing (class)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 import Bootstrap.Text as Text
 import Bootstrap.Internal.Text as TextInternal
 import Bootstrap.General.Internal exposing (ScreenSize(..), HAlign, HorizontalAlign(..), hAlignClass, screenSizeOption)

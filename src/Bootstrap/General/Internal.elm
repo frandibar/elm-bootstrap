@@ -1,9 +1,8 @@
 module Bootstrap.General.Internal exposing (..)
 
 
-import Html
-import Html.Attributes exposing (class)
-
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 
 
 type alias HAlign =

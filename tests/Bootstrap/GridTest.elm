@@ -2,9 +2,7 @@ module Bootstrap.GridTest exposing (..)
 
 import Bootstrap.Grid exposing (..)
 import Bootstrap.Grid.Col exposing (..)
-import Expect
-import Html as Html
-import Html.Attributes as Attr
+import Html.Styled as Html
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, class, classes, tag, text)
@@ -24,6 +22,7 @@ orderClass =
                     ]
                     []
                 ]
+                |> Html.toUnstyled
                 |> Query.fromHtml
                 |> Query.find [ class "col" ]
                 |> Query.has

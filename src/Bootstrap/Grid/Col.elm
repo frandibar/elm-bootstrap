@@ -154,7 +154,7 @@ module Bootstrap.Grid.Col exposing (..)
 
 -}
 
-import Html
+import Html.Styled as Html
 import Bootstrap.Grid.Internal as Internal exposing (..)
 import Bootstrap.General.Internal exposing (ScreenSize(..))
 import Bootstrap.Text as Text

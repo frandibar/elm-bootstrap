@@ -7,8 +7,8 @@ module Bootstrap.Internal.Text
         , Color(..)
         )
 
-import Html
-import Html.Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Internal.Role as Role
 
@@ -37,7 +37,7 @@ textAlignClass { dir, size } =
                 |> Maybe.withDefault "-"
            )
         ++ textAlignDirOption dir
-        |> Html.Attributes.class
+        |> class
 
 
 textAlignDirOption : TextAlignDir -> String
@@ -57,7 +57,7 @@ textColorClass : Color -> Html.Attribute msg
 textColorClass color =
     case color of
         White ->
-            Html.Attributes.class "text-white"
+            class "text-white"
 
         Role role ->
             Role.toClass "text" role

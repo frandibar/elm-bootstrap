@@ -1,8 +1,9 @@
 module Bootstrap.TabTest exposing (..)
 
 import Bootstrap.Tab as Tab
-import Html exposing (text, h4, p)
-import Html.Attributes as Attributes
+import Html.Styled exposing (Html, text, h4, p, toUnstyled)
+import Html.Styled.Attributes as Attributes
+import Html.Attributes as HA
 import Test exposing (Test, test, describe)
 import Expect
 import Test.Html.Query as Query
@@ -35,15 +36,15 @@ simpleTabs =
                         }
                     ]
                 |> Tab.view Tab.initialState
+                |> toUnstyled
+                |> Query.fromHtml
 
         nav =
             html
-                |> Query.fromHtml
                 |> Query.find [ classes [ "nav", "nav-tabs" ] ]
 
         content =
             html
-                |> Query.fromHtml
                 |> Query.find [ class "tab-content" ]
     in
         describe "Simple tab"
@@ -58,7 +59,7 @@ simpleTabs =
                         nav
                             |> Query.findAll [ tag "a" ]
                             |> Query.index 0
-                            |> Query.has [ attribute <| Attributes.attribute "href" "#tabItem1" ]
+                            |> Query.has [ attribute <| HA.attribute "href" "#tabItem1" ]
                 , test "Expect links to have children" <|
                     \() ->
                         nav
@@ -89,7 +90,7 @@ simpleTabs =
                         content
                             |> Query.findAll [ class "tab-pane" ]
                             |> Query.index 0
-                            |> Query.has [ attribute <| Attributes.attribute "id" "tabItem1" ]
+                            |> Query.has [ attribute <| HA.attribute "id" "tabItem1" ]
                 ]
             ]
 
@@ -102,20 +103,20 @@ pillsAndAttributes =
                 |> Tab.pills
                 |> Tab.attrs [ Attributes.name "myTabs" ]
                 |> Tab.view Tab.initialState
+                |> toUnstyled
+                |> Query.fromHtml
     in
         describe "pills"
             [ test "Expect nav-pills class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.find [ tag "ul" ]
                         |> Query.has [ class "nav-pills" ]
             , test "Expect custom name attribute" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.find [ tag "ul" ]
-                        |> Query.has [ attribute <| Attributes.attribute "name" "myTabs" ]
+                        |> Query.has [ attribute <| HA.attribute "name" "myTabs" ]
             ]
 
 
@@ -126,12 +127,13 @@ horizontalAlignment =
             Tab.config (\_ -> ())
                 |> alignment
                 |> Tab.view Tab.initialState
+                |> toUnstyled
+                |> Query.fromHtml
 
         alignmentTest alignment className =
             test ("alignment of " ++ className) <|
                 \() ->
                     html alignment
-                        |> Query.fromHtml
                         |> Query.find [ class "nav-tabs" ]
                         |> Query.has [ class className ]
     in

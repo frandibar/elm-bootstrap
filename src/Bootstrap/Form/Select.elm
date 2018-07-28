@@ -29,9 +29,9 @@ module Bootstrap.Form.Select
 
 -}
 
-import Html
-import Html.Attributes as Attributes
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
+import Html.Styled.Events as Events
 import Json.Decode as Json
 import Bootstrap.General.Internal exposing (ScreenSize (..), screenSizeOption)
 import Bootstrap.Form.FormInternal as FormInternal

@@ -65,9 +65,9 @@ You can also group a series of buttons together on a single line with the button
 
 -}
 
-import Html
-import Html.Attributes as Attributes exposing (class, classList)
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (class, classList)
+import Html.Styled.Events as Events
 import Json.Decode as Decode
 import Bootstrap.Internal.Button as ButtonInternal
 import Bootstrap.General.Internal exposing (ScreenSize(..))

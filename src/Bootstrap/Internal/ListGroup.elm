@@ -1,7 +1,7 @@
 module Bootstrap.Internal.ListGroup exposing (..)
 
-import Html
-import Html.Attributes as Attr exposing (classList, class)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr exposing (classList, class)
 import Bootstrap.Internal.Role as Role exposing (Role(..))
 
 

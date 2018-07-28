@@ -36,9 +36,9 @@ module Bootstrap.Form.Radio
 
 -}
 
-import Html
-import Html.Attributes as Attributes
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
+import Html.Styled.Events as Events
 import Bootstrap.Form.FormInternal as FormInternal
 
 

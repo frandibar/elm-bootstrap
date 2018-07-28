@@ -6,8 +6,8 @@ module Bootstrap.Utilities.Size exposing (..)
 -}
 
 
-import Html exposing (Attribute)
-import Html.Attributes exposing (class)
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes exposing (class)
 
 
 {-| Set height to 25% of parent element.

@@ -1,8 +1,8 @@
 module Bootstrap.AlertTest exposing (..)
 
 import Bootstrap.Alert as Alert
-import Html
-import Html.Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes
 import Test exposing (Test, test, describe)
 import Expect
 import Test.Html.Query as Query
@@ -27,10 +27,11 @@ simpleAlerts =
                 , alert "light" Alert.simpleLight
                 , alert "dark" Alert.simpleDark
                 ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
 
         expectRoled roleTxt =
             html
-                |> Query.fromHtml
                 |> Query.find [ class ("alert-" ++ roleTxt) ]
                 |> Query.has [ text roleTxt ]
     in
@@ -38,7 +39,6 @@ simpleAlerts =
             [ test "Expect 8 alerts" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ class "alert" ]
                         |> Query.count (Expect.equal 8)
             , test "Expect primary" <|
@@ -73,12 +73,13 @@ alertWithLink =
     let
         html =
             Alert.simpleInfo [] [ Alert.link [] [ Html.text "link" ] ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Alert with link"
             [ test "Expect link class and text" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.find [ tag "a" ]
                         |> Query.has [ class "alert-link", text "link" ]
             ]
@@ -96,10 +97,11 @@ alertWithHeaders =
                 , Alert.h5 [] [ Html.text "h5" ]
                 , Alert.h6 [] [ Html.text "h6" ]
                 ]
+                |> Html.toUnstyled
+                |> Query.fromHtml
 
         expectH txt =
             html
-                |> Query.fromHtml
                 |> Query.find [ tag txt ]
                 |> Query.has [ text txt ]
     in
@@ -107,7 +109,6 @@ alertWithHeaders =
             [ test "Expect link class and text" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ class "alert-header" ]
                         |> Query.count (Expect.equal 6)
             , test "Expect h1" <| \() -> expectH "h1"
@@ -123,12 +124,13 @@ alertWithAttributes : Test
 alertWithAttributes =
     let
         html =
-            Alert.simpleInfo [ Html.Attributes.class "my-class" ] []
+            Alert.simpleInfo [ Html.Styled.Attributes.class "my-class" ] []
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Alert with attributes"
             [ test "Expect has passed class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has [ classes [ "my-class" ] ]
             ]

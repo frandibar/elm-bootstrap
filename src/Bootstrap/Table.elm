@@ -103,9 +103,9 @@ module Bootstrap.Table
 
 -}
 
-import Html
-import Html.Attributes exposing (class)
-import Html.Keyed as Keyed
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, scope)
+import Html.Styled.Keyed as Keyed
 import Bootstrap.Internal.Role as Role exposing (Role(..))
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 
@@ -579,7 +579,7 @@ addScopeIfTh cell =
         Th cellConfig ->
             Th
                 { cellConfig
-                    | options = (cellAttr <| Html.Attributes.scope "row") :: cellConfig.options
+                    | options = (cellAttr <| scope "row") :: cellConfig.options
                 }
 
         Td _ ->

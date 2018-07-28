@@ -39,9 +39,9 @@ module Bootstrap.ListGroup
 
 -}
 
-import Html
-import Html.Attributes as Attr exposing (class, classList, type_)
-import Html.Keyed as Keyed
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr exposing (class, classList, type_)
+import Html.Styled.Keyed as Keyed
 import Bootstrap.Internal.ListGroup as Internal
 import Bootstrap.Internal.Role as Role
 

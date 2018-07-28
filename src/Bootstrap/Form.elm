@@ -48,8 +48,8 @@ Use form groups to group items together (label + input is a typical simple examp
 
 -}
 
-import Html
-import Html.Attributes as Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 import Bootstrap.Grid.Row as Row
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Internal as GridInternal

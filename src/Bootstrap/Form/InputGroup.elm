@@ -66,8 +66,8 @@ module Bootstrap.Form.InputGroup
 
 -}
 
-import Html
-import Html.Attributes as Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Button as Button
 import Bootstrap.Form.Input as Input

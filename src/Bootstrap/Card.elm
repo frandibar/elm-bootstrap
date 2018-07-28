@@ -85,9 +85,9 @@ Cards can be composed into
 
 -}
 
-import Html
-import Html.Attributes exposing (class)
-import Html.Keyed as Keyed
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
+import Html.Styled.Keyed as Keyed
 import Bootstrap.Text as Text
 import Bootstrap.ListGroup as ListGroup
 import Bootstrap.Card.Block as Block

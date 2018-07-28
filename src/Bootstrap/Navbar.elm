@@ -144,9 +144,9 @@ The navbar is designed to be responsive by default and made interactive with a t
 
 -}
 
-import Html
-import Html.Attributes exposing (class, classList, style, type_, id, href)
-import Html.Events exposing (onClick, on, onWithOptions)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, classList, style, type_, id, href)
+import Html.Styled.Events exposing (onClick, on, onWithOptions)
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Internal.Role as RoleInternal
 import Color

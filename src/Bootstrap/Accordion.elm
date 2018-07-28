@@ -106,9 +106,9 @@ module Bootstrap.Accordion
 
 -}
 
-import Html
-import Html.Attributes exposing (class, href, style)
-import Html.Events exposing (onClick, on, onWithOptions, Options)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, href, style)
+import Html.Styled.Events exposing (onClick, on, onWithOptions, Options)
 import Json.Decode as Json
 import DOM
 import Dict exposing (Dict)
@@ -630,7 +630,7 @@ renderCardBlock :
     -> Html.Html msg
 renderCardBlock state config ((Card { id, blocks }) as card) =
     Html.div
-        ([ Html.Attributes.id id ] ++ animationAttributes state config card)
+        ([ Html.Styled.Attributes.id id ] ++ animationAttributes state config card)
         [ Html.div [] (CardInternal.renderBlocks blocks) ]
 
 

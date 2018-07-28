@@ -2,8 +2,9 @@ module Bootstrap.DropdownTest exposing (..)
 
 import Bootstrap.Dropdown as Dropdown
 import Bootstrap.Button as Button
-import Html
-import Html.Attributes as Attr
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
+import Html.Attributes as HA
 import Test exposing (Test, test, describe)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (text, tag, class, classes, attribute)
@@ -38,17 +39,17 @@ dropDown =
                     , Dropdown.buttonItem [] [ Html.text "DoNothing2" ]
                     ]
                 }
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Dropdown"
             [ test "expect wrapping div and class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has [ class "btn-group", tag "div" ]
             , test "expect button toggle" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children [ tag "button" ]
                         |> Query.first
                         |> Query.has
@@ -59,7 +60,6 @@ dropDown =
             , test "expect dropdown menu" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children [ tag "div" ]
                         |> Query.first
                         |> Query.has
@@ -67,13 +67,11 @@ dropDown =
             , test "expect menu items" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ class "dropdown-item" ]
                         |> Query.count (Expect.equal 4)
             , test "expect menu header" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.find [ class "dropdown-menu" ]
                         |> Query.findAll []
                         |> Query.index 3
@@ -81,7 +79,6 @@ dropDown =
             , test "expect menu divider" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.find [ class "dropdown-menu" ]
                         |> Query.findAll []
                         |> Query.index 2
@@ -106,29 +103,28 @@ splitDropDown =
                 , items =
                     [ Dropdown.buttonItem [] [ Html.text "Item 1" ] ]
                 }
+                |> Html.toUnstyled
+                |> Query.fromHtml
     in
         describe "Split dropdown"
             [ test "expect wrapping div and class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has [ class "btn-group", tag "div" ]
             , test "expect main button" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children [ tag "button" ]
                         |> Query.first
                         |> Query.has [ classes [ "btn", "btn-info" ], tag "button" ]
             , test "expect toggle button" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.children [ tag "button" ]
                         |> Query.index 1
                         |> Query.has
                             [ classes [ "btn", "btn-info", "dropdown-toggle", "dropdown-toggle-split" ]
                             , tag "button"
-                            , attribute <| Attr.attribute "type" "button"
+                            , attribute <| HA.attribute "type" "button"
                             ]
             ]

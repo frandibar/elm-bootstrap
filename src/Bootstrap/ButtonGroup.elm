@@ -47,8 +47,8 @@ module Bootstrap.ButtonGroup
 
 -}
 
-import Html
-import Html.Attributes as Attributes exposing (class, classList, attribute)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (class, classList, attribute)
 import Bootstrap.Button as Button
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 

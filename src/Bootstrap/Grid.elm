@@ -50,9 +50,9 @@ module Bootstrap.Grid
 
 -}
 
-import Html exposing (Html, div, Attribute)
-import Html.Attributes exposing (class, classList)
-import Html.Keyed as Keyed
+import Html.Styled as Html exposing (Html, div, Attribute)
+import Html.Styled.Attributes exposing (class, classList)
+import Html.Styled.Keyed as Keyed
 import Bootstrap.Grid.Internal as GridInternal
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Row as Row

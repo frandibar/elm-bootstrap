@@ -34,8 +34,8 @@ It doesn't use the HTML5 `<progress>` element, ensuring you can stack progress b
 
 -}
 
-import Html exposing (Html, Attribute)
-import Html.Attributes as Attributes exposing (class, classList, style, attribute)
+import Html.Styled as Html exposing (Html, Attribute)
+import Html.Styled.Attributes as Attributes exposing (class, classList, style, attribute)
 
 
 {-| Opaque type representing available display options for the progress bar
@@ -43,7 +43,7 @@ import Html.Attributes as Attributes exposing (class, classList, style, attribut
 type Option msg
     = Value Float
     | Height (Maybe Int)
-    | Label (List (Html.Html msg))
+    | Label (List (Html msg))
     | Roled (Maybe Role)
     | Striped Bool
     | Animated Bool
@@ -89,7 +89,7 @@ progress modifiers =
             List.foldl applyOption defaultOptions modifiers
     in
         Html.div
-            ( class "progress" :: options.wrapperAttributes)
+            (class "progress" :: options.wrapperAttributes)
             [ renderBar modifiers ]
 
 

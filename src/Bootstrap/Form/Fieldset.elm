@@ -22,8 +22,8 @@ Fieldset comes with the added benefit of disabling all child controls when we se
 
 -}
 
-import Html
-import Html.Attributes as Attributes exposing (classList)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (classList)
 
 
 {-| Opaque representation of the view configuration for a fieldset.

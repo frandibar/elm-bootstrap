@@ -3,8 +3,9 @@ module Bootstrap.ProgressTest exposing (options, progressMulti, vanillaProgress)
 import Bootstrap.Progress as Progress
 import Expect
 import Fuzz
-import Html
 import Html.Attributes as Attr
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 import Test exposing (Test, describe, fuzz, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, class, classes, tag, text)
@@ -15,6 +16,7 @@ vanillaProgress =
     let
         html =
             Progress.progress [ Progress.value 30 ]
+                |> Html.toUnstyled
     in
     describe "Plain progress bar"
         [ test "expect div with progress class" <|
@@ -38,6 +40,7 @@ vanillaProgress =
         , fuzz (Fuzz.floatRange 0 100) "expect the progress value is present" <|
             \progressValue ->
                 Progress.progress [ Progress.value progressValue ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.find [ tag "div", class "progress-bar" ]
                     |> Query.has [ attribute <| Attr.attribute "aria-value-now" (String.fromFloat progressValue) ]
@@ -53,6 +56,7 @@ progressMulti =
                 , [ Progress.value 30, Progress.info, Progress.label "Info" ]
                 , [ Progress.value 40, Progress.danger, Progress.label "Danger" ]
                 ]
+                |> Html.toUnstyled
     in
     describe "Progress containing multiple progress bars"
         [ test "expect three progressbars" <|
@@ -70,52 +74,64 @@ options =
         [ fuzz (Fuzz.floatRange 0 100) "expect the progress value" <|
             \progressValue ->
                 Progress.progress [ Progress.value progressValue ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ attribute <| Attr.attribute "aria-value-now" (String.fromFloat progressValue) ]
         , fuzz Fuzz.string "expect a label" <|
             \label ->
                 Progress.progress [ Progress.value 42, Progress.label label ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ text label ]
-{-         , fuzz Fuzz.string "expect no label when value is not set" <|
-            \label ->
-                Progress.progress [ Progress.label label ]
-                    |> Query.fromHtml
-                    --|> Query.has [ text label ]
-                    |> Query.hasNot [ text label ] -}
+
+        {- , fuzz Fuzz.string "expect no label when value is not set" <|
+           \label ->
+               Progress.progress [ Progress.label label ]
+                   |> Html.toUnstyled
+                   |> Query.fromHtml
+                   --|> Query.has [ text label ]
+                   |> Query.hasNot [ text label ]
+        -}
         , test "expect a custom label" <|
             \() ->
-                Progress.progress [ Progress.customLabel [ Html.div [ Attr.class "custom-label" ] [] ] ]
+                Progress.progress [ Progress.customLabel [ Html.div [ Attributes.class "custom-label" ] [] ] ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "custom-label" ]
         , test "expect bg-success class" <|
             \() ->
                 Progress.progress [ Progress.success ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "progress-bar", class "bg-success" ]
         , test "expect bg-info class" <|
             \() ->
                 Progress.progress [ Progress.info ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "progress-bar", class "bg-info" ]
         , test "expect bg-warning class" <|
             \() ->
                 Progress.progress [ Progress.warning ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "progress-bar", class "bg-warning" ]
         , test "expect bg-danger class" <|
             \() ->
                 Progress.progress [ Progress.danger ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "progress-bar", class "bg-danger" ]
         , test "expect progress-bar-animated and progress-bar-striped class" <|
             \() ->
                 Progress.progress [ Progress.animated ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "progress-bar", class "progress-bar-animated", class "progress-bar-striped" ]
         , test "expect progress-bar-striped class" <|
             \() ->
                 Progress.progress [ Progress.striped ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ tag "div", class "progress-bar", class "progress-bar-striped" ]
         ]

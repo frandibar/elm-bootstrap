@@ -2,8 +2,9 @@ module Bootstrap.TableTest exposing (defaultTable, defaultTbody, defaultThead, s
 
 import Bootstrap.Table as Table
 import Expect
-import Html
-import Html.Attributes as Attr
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
+import Html.Attributes as HA
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, class, classes, tag, text)
@@ -29,6 +30,7 @@ superSimple =
                         ]
                     ]
                 )
+                |> Html.toUnstyled
     in
     describe "Super simple table"
         [ test "expect class" <|
@@ -79,6 +81,7 @@ styledTable =
                 , Table.small
                 , Table.hover
                 ]
+                |> Html.toUnstyled
     in
     describe "Styled table"
         [ test "expect class" <|
@@ -92,6 +95,7 @@ styledTable =
         , test "expect wrapped in div when responsive" <|
             \() ->
                 defaultTable [ Table.responsive ]
+                    |> Html.toUnstyled
                     |> Query.fromHtml
                     |> Query.has [ class "table-responsive", tag "div" ]
         ]
@@ -106,6 +110,7 @@ styledThead =
                 , thead = defaultThead [ option ]
                 , tbody = defaultTbody
                 }
+                |> Html.toUnstyled
     in
     describe "Styled thead "
         [ test "expect inversed" <|
@@ -144,6 +149,7 @@ styledTdOrRowInBody =
                             ]
                         ]
                 }
+                |> Html.toUnstyled
     in
     describe "Styled cell in body "
         [ test "expect td active class and custom attribute" <|
@@ -151,7 +157,7 @@ styledTdOrRowInBody =
                 html []
                     |> Query.fromHtml
                     |> Query.find [ tag "td" ]
-                    |> Query.has [ class "table-active", attribute <| Attr.attribute "align" "left" ]
+                    |> Query.has [ class "table-active", attribute <| HA.attribute "align" "left" ]
         , test "expect td active bg class when table inversed" <|
             \() ->
                 html [ Table.inversed ]
@@ -165,7 +171,7 @@ styledTdOrRowInBody =
                     |> Query.find [ tag "tbody" ]
                     |> Query.children []
                     |> Query.first
-                    |> Query.has [ class "table-success", attribute <| Attr.attribute "align" "left" ]
+                    |> Query.has [ class "table-success", attribute <| HA.attribute "align" "left" ]
         , test "expect tr success bg class when table inversed" <|
             \() ->
                 html [ Table.inversed ]
@@ -197,6 +203,7 @@ styledThOrRowInHead =
                     Table.tbody []
                         [ Table.tr [] [ Table.td [] [] ] ]
                 }
+                |> Html.toUnstyled
     in
     describe "Styled cell in head"
         [ test "expect th active class" <|

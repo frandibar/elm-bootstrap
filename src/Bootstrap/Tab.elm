@@ -73,9 +73,9 @@ module Bootstrap.Tab exposing
 -}
 
 import Browser.Events
-import Html
-import Html.Attributes as Attributes exposing (class, classList, href, style)
-import Html.Events exposing (custom, on, onClick)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (class, classList, href, style)
+import Html.Styled.Events exposing (custom, on, onClick)
 import Json.Decode as Json
 
 

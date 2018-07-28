@@ -3,21 +3,21 @@ module Bootstrap.Carousel.SlideInternal exposing (Config(..), SlideContent(..), 
 {-| Config type
 -}
 
-import Html exposing (div, text)
-import Html.Attributes as Attributes exposing (class)
+import Html.Styled as Html exposing (Html, div, img, text)
+import Html.Styled.Attributes as Attributes exposing (class)
 
 
 type Config msg
     = Config
         { attributes : List (Html.Attribute msg)
         , content : SlideContent msg
-        , caption : Maybe { attributes : List (Html.Attribute msg), children : List (Html.Html msg) }
+        , caption : Maybe { attributes : List (Html.Attribute msg), children : List (Html msg) }
         }
 
 
 type SlideContent msg
     = Image { attributes : List (Html.Attribute msg), src : String }
-    | Custom { html : Html.Html msg }
+    | Custom { html : Html msg }
 
 
 {-| Function to add extra attributes to an existing slide. Used to put the proper classes for css transitions
@@ -32,7 +32,7 @@ addAttributes newAttributes (Config settings) =
 Not exposed because it does not make sense to have a standalone slide outside of a carousel.
 
 -}
-view : Config msg -> Html.Html msg
+view : Config msg -> Html msg
 view (Config { attributes, content, caption }) =
     let
         captionHtml =

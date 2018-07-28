@@ -1,7 +1,7 @@
 module Bootstrap.Form.FormInternal exposing (Validation(..), validationToString, validationWrapperAttribute)
 
-import Html
-import Html.Attributes as Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 
 
 type Validation

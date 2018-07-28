@@ -5,8 +5,10 @@ import Bootstrap.Card.Block as Block
 import Bootstrap.ListGroup as ListGroup
 import Bootstrap.Text as Text
 import Expect
-import Html
-import Html.Attributes as Attr
+import Html as H
+import Html.Attributes as HA
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr exposing (src)
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, class, classes, tag, text)
@@ -18,6 +20,7 @@ emptySimpleCard =
         html =
             Card.config []
                 |> Card.view
+                |> Html.toUnstyled
     in
     describe "Simple card no options"
         [ test "expect card class" <|
@@ -43,6 +46,7 @@ notSoSimpleCard =
                     , Block.quote [] [ Html.text "blockquote" ]
                     ]
                 |> Card.view
+                |> Html.toUnstyled
     in
     describe "Simple card with options and items"
         [ test "expect classes" <|
@@ -84,10 +88,11 @@ cardFullMonty =
             Card.config [ Card.outlineInfo, Card.attrs [ Attr.class "my-class" ], Card.textColor Text.dark ]
                 |> Card.headerH1 [] [ Html.text "Header" ]
                 |> Card.footer [] [ Html.text "Footer" ]
-                |> Card.imgTop [ Attr.src "/imgtop.jpg" ] []
-                |> Card.imgBottom [ Attr.src "/imgbottom.jpg" ] []
+                |> Card.imgTop [ src "/imgtop.jpg" ] []
+                |> Card.imgBottom [ src "/imgbottom.jpg" ] []
                 |> Card.block [] [ Block.text [] [ Html.text "cardblock" ] ]
                 |> Card.view
+                |> Html.toUnstyled
     in
     describe "Card with everything in it"
         [ test "expect classes" <|
@@ -112,13 +117,13 @@ cardFullMonty =
                 html
                     |> Query.fromHtml
                     |> Query.find [ class "card-img-top" ]
-                    |> Query.has [ attribute <| Attr.attribute "src" "/imgtop.jpg" ]
+                    |> Query.has [ attribute <| HA.attribute "src" "/imgtop.jpg" ]
         , test "expect card image bottom" <|
             \() ->
                 html
                     |> Query.fromHtml
                     |> Query.find [ class "card-img-bottom" ]
-                    |> Query.has [ attribute <| Attr.attribute "src" "/imgbottom.jpg" ]
+                    |> Query.has [ attribute <| HA.attribute "src" "/imgbottom.jpg" ]
         , test "expect card block" <|
             \() ->
                 html
@@ -142,10 +147,12 @@ group : Test
 group =
     let
         html =
-            Card.group <| cardList 3
+            (Card.group <| cardList 3)
+                |> Html.toUnstyled
 
         keyedHtml =
-            Card.keyedGroup <| keyedCardList [ "id1", "id2", "id3" ]
+            (Card.keyedGroup <| keyedCardList [ "id1", "id2", "id3" ])
+                |> Html.toUnstyled
     in
     describe "Card group"
         [ test "expect classes" <|
@@ -167,10 +174,12 @@ deck : Test
 deck =
     let
         html =
-            Card.deck <| cardList 3
+            (Card.deck <| cardList 3)
+                |> Html.toUnstyled
 
         keyedHtml =
-            Card.keyedDeck <| keyedCardList [ "id1", "id2", "id3" ]
+            (Card.keyedDeck <| keyedCardList [ "id1", "id2", "id3" ])
+                |> Html.toUnstyled
     in
     describe "Card deck"
         [ test "expect classes" <|
@@ -192,10 +201,12 @@ columns : Test
 columns =
     let
         html =
-            Card.columns <| cardList 3
+            (Card.columns <| cardList 3)
+                |> Html.toUnstyled
 
         keyedHtml =
-            Card.keyedColumns <| keyedCardList [ "id1", "id2", "id3" ]
+            (Card.keyedColumns <| keyedCardList [ "id1", "id2", "id3" ])
+                |> Html.toUnstyled
     in
     describe "Card columns with everything in it"
         [ test "expect classes" <|
@@ -219,14 +230,14 @@ cardList count =
         Card.config []
 
 
-expectClasses : Html.Html msg -> String -> Expect.Expectation
+expectClasses : H.Html msg -> String -> Expect.Expectation
 expectClasses html nodeClass =
     html
         |> Query.fromHtml
         |> Query.has [ class nodeClass ]
 
 
-expectThreeItems : Html.Html msg -> Expect.Expectation
+expectThreeItems : H.Html msg -> Expect.Expectation
 expectThreeItems html =
     html
         |> Query.fromHtml
@@ -249,6 +260,7 @@ listGroup =
                     , ListGroup.li [ ListGroup.info ] [ Html.text "item2" ]
                     ]
                 |> Card.view
+                |> Html.toUnstyled
     in
     describe "Card with list group"
         [ test "expect two list items" <|

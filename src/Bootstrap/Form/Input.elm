@@ -27,9 +27,9 @@ You can indicate success or invalid input using these functions.
 
 import Bootstrap.Form.FormInternal as FormInternal
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
-import Html
-import Html.Attributes as Attributes
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
+import Html.Styled.Events as Events
 
 
 {-| Opaque type representing a composable input

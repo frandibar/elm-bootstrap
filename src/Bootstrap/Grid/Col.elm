@@ -185,7 +185,7 @@ module Bootstrap.Grid.Col exposing
 import Bootstrap.General.Internal exposing (ScreenSize(..))
 import Bootstrap.Grid.Internal as Internal exposing (..)
 import Bootstrap.Text as Text
-import Html
+import Html.Styled as Html
 
 
 {-| Opaque type representing valid Column options

@@ -7,7 +7,7 @@ module Bootstrap.Pagination.Item exposing (item, link, span, active, disabled, a
 -}
 
 import Bootstrap.Pagination.Internal as Internal exposing (Status(..))
-import Html
+import Html.Styled as Html
 
 
 {-| Opaque type representing configuration options for an item (regardless of whether its a Link or a Span).

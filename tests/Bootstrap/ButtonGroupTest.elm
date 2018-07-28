@@ -2,8 +2,9 @@ module Bootstrap.ButtonGroupTest exposing (checkGroup, groupWithOptions, linkGro
 
 import Bootstrap.Button as Button
 import Bootstrap.ButtonGroup as ButtonGroup
-import Html
 import Html.Attributes as Attr
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, checked, class, classes, tag, text)
@@ -17,6 +18,7 @@ simpleGroup =
                 [ ButtonGroup.button [] [ Html.text "First" ]
                 , ButtonGroup.button [] [ Html.text "Second" ]
                 ]
+                |> Html.toUnstyled
     in
     describe "Simple group"
         [ test "expect btn-group" <|
@@ -38,8 +40,9 @@ groupWithOptions : Test
 groupWithOptions =
     let
         html =
-            ButtonGroup.buttonGroup [ ButtonGroup.small, ButtonGroup.vertical, ButtonGroup.attrs [ Attr.class "my-class" ] ]
+            ButtonGroup.buttonGroup [ ButtonGroup.small, ButtonGroup.vertical, ButtonGroup.attrs [ Attributes.class "my-class" ] ]
                 [ ButtonGroup.button [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
     in
     describe "Optioned group"
         [ test "expect classes" <|
@@ -73,6 +76,7 @@ linkGroup =
         html =
             ButtonGroup.linkButtonGroup []
                 [ ButtonGroup.linkButton [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
     in
     describe "Link group"
         [ test "Expect button classes" <|
@@ -95,6 +99,7 @@ checkGroup =
         html =
             ButtonGroup.checkboxButtonGroup []
                 [ ButtonGroup.checkboxButton False [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
     in
     describe "Checkbox group"
         [ test "Except label with classes" <|
@@ -130,6 +135,7 @@ radioGroup =
         html =
             ButtonGroup.radioButtonGroup []
                 [ ButtonGroup.radioButton False [ Button.primary ] [ Html.text "First" ] ]
+                |> Html.toUnstyled
     in
     describe "Radio group"
         [ test "Except label with classes" <|
@@ -167,6 +173,7 @@ toolbar =
                 [ ButtonGroup.buttonGroupItem []
                     [ ButtonGroup.button [] [ Html.text "Button" ] ]
                 ]
+                |> Html.toUnstyled
     in
     describe "Toolbar"
         [ test "expect toolbar" <|

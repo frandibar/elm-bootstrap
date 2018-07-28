@@ -46,9 +46,9 @@ module Bootstrap.Grid exposing
 import Bootstrap.Grid.Col as Col
 import Bootstrap.Grid.Internal as GridInternal
 import Bootstrap.Grid.Row as Row
-import Html exposing (Attribute, Html, div)
-import Html.Attributes exposing (class, classList)
-import Html.Keyed as Keyed
+import Html.Styled as Html exposing (Attribute, Html, div)
+import Html.Styled.Attributes exposing (class, classList)
+import Html.Styled.Keyed as Keyed
 
 
 {-| Opaque type representing a column element

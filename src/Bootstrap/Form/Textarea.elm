@@ -24,9 +24,9 @@ module Bootstrap.Form.Textarea exposing
 -}
 
 import Bootstrap.Form.FormInternal as FormInternal
-import Html
-import Html.Attributes as Attributes
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
+import Html.Styled.Events as Events
 
 
 {-| Opaque type representing a composable input

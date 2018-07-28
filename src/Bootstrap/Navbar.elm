@@ -108,9 +108,9 @@ import Browser.Dom
 import Browser.Events
 import Color exposing (Color)
 import Dict
-import Html
-import Html.Attributes exposing (class, classList, href, id, style, type_)
-import Html.Events exposing (custom, on, onClick)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, classList, href, id, style, type_)
+import Html.Styled.Events exposing (custom, on, onClick)
 import Json.Decode as Json
 import Task
 

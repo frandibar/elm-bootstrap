@@ -117,9 +117,9 @@ import Bootstrap.Button as Button
 import Bootstrap.Internal.Button as ButtonInternal
 import Bootstrap.Utilities.DomHelper as DomHelper
 import Browser.Events
-import Html
-import Html.Attributes exposing (class, classList, href, id, style, type_)
-import Html.Events exposing (on, onClick)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, classList, href, id, style, type_)
+import Html.Styled.Events exposing (on, onClick)
 import Json.Decode as Json
 
 

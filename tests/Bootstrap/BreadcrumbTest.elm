@@ -2,8 +2,9 @@ module Bootstrap.BreadcrumbTest exposing (testWithTwoItems, testWithoutItems)
 
 import Bootstrap.Breadcrumb as Breadcrumb
 import Expect
-import Html exposing (div, text)
+import Html as H
 import Html.Attributes as Attr
+import Html.Styled exposing (Html, div, text, toUnstyled)
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, class, tag)
@@ -33,6 +34,7 @@ testWithTwoItems =
                     , Breadcrumb.item [] [ text "page" ]
                     ]
                 ]
+                |> toUnstyled
     in
     describe "Tests with two items"
         [ test "Expect the navigation with an aria-label" <|
@@ -71,14 +73,14 @@ testWithTwoItems =
                     |> Query.fromHtml
                     |> Query.findAll [ tag "li" ]
                     |> Query.index 0
-                    |> Query.contains [ text "home" ]
+                    |> Query.contains [ H.text "home" ]
         , test "Expect second element to contain 'page'" <|
             \() ->
                 html
                     |> Query.fromHtml
                     |> Query.findAll [ tag "li" ]
                     |> Query.index 1
-                    |> Query.contains [ text "page" ]
+                    |> Query.contains [ H.text "page" ]
         , test "Expect first element without an aria-current" <|
             \() ->
                 html

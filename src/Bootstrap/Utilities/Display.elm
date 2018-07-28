@@ -30,8 +30,8 @@ You may combine hiding and display functions to control when an element is displ
 
 -}
 
-import Html exposing (Attribute)
-import Html.Attributes exposing (class)
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes exposing (class)
 
 
 {-| Display as block element.

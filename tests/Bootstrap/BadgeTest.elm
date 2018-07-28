@@ -1,7 +1,7 @@
 module Bootstrap.BadgeTest exposing (badge, pill)
 
 import Bootstrap.Badge as Badge
-import Html
+import Html.Styled as Html
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (classes, tag, text)
@@ -12,9 +12,11 @@ badge =
     let
         html =
             Badge.badgeDanger [] [ Html.text "X" ]
+                |> Html.toUnstyled
 
         expectBadgeClass constructor class =
             constructor [] [ Html.text "X" ]
+                |> Html.toUnstyled
                 |> Query.fromHtml
                 |> Query.has [ classes [ "badge", class ] ]
     in
@@ -50,6 +52,7 @@ pill =
     let
         html =
             Badge.pillDanger [] [ Html.text "X" ]
+                |> Html.toUnstyled
     in
     describe "Pill with options"
         [ test "expect span and text" <|

@@ -32,10 +32,10 @@ module Bootstrap.Carousel exposing
 import Bootstrap.Carousel.Slide as Slide
 import Bootstrap.Carousel.SlideInternal as SlideInternal
 import Browser.Events
-import Html exposing (a, button, div, span, text)
-import Html.Attributes as Attributes exposing (attribute, class, classList, href)
-import Html.Events exposing (on, onClick, onMouseEnter, onMouseLeave)
-import Html.Keyed as Keyed
+import Html.Styled as Html exposing (Html, a, button, div, img, li, span, text)
+import Html.Styled.Attributes as Attributes exposing (attribute, class, classList, href)
+import Html.Styled.Events exposing (on, onClick, onMouseEnter, onMouseLeave)
+import Html.Styled.Keyed as Keyed
 import Json.Decode as Decode
 import Time
 
@@ -437,7 +437,7 @@ withControls (Config settings) =
   - `config` The configuration for the display of the carousel
 
 -}
-view : State -> Config msg -> Html.Html msg
+view : State -> Config msg -> Html msg
 view ((State tstage { hovering, currentIndex, wrap }) as model) (Config settings) =
     let
         size =
@@ -493,13 +493,13 @@ view ((State tstage { hovering, currentIndex, wrap }) as model) (Config settings
 have access to the number of slides outside of the view. Here, we trigger a browser
 event (on page load, effectively) to get the number of slides into the update function, where it is stored in the State
 -}
-dirtyHack : Int -> Html.Html Msg
+dirtyHack : Int -> Html Msg
 dirtyHack size =
     -- use keyed to ensure this element is drawn only once
     Keyed.node "div"
         []
         [ ( "dirtyHack"
-          , Html.img
+          , img
                 [ on "load" (Decode.succeed (EndTransition size))
                 , Attributes.src "https://package.elm-lang.org/assets/favicon.ico"
                 , Attributes.style "display" "none"
@@ -511,7 +511,7 @@ dirtyHack size =
 
 {-| Sets the correct classes to the current and (potentially) next element.
 -}
-viewSlide : State -> Int -> Slide.Config msg -> Html.Html msg
+viewSlide : State -> Int -> Slide.Config msg -> Html msg
 viewSlide ((State tstage { currentIndex, size }) as model) index slide =
     let
         newIndex =
@@ -602,7 +602,7 @@ transitionClasses index currentIndex newIndex tstage =
         []
 
 
-controlPrev : Html.Html Msg
+controlPrev : Html Msg
 controlPrev =
     button [ class "btn btn-link carousel-control-prev", onClick (StartTransition Prev) ]
         [ span [ class "carousel-control-prev-icon", attribute "aria-hidden" "true" ] []
@@ -610,7 +610,7 @@ controlPrev =
         ]
 
 
-controlNext : Html.Html Msg
+controlNext : Html Msg
 controlNext =
     button [ class "btn btn-link carousel-control-next", attribute "role" "button", onClick (StartTransition Next) ]
         [ span [ class "carousel-control-next-icon", attribute "aria-hidden" "true" ] []
@@ -618,11 +618,11 @@ controlNext =
         ]
 
 
-indicators : Int -> Int -> Html.Html Msg
+indicators : Int -> Int -> Html Msg
 indicators size activeIndex =
     let
         item n =
-            Html.li
+            li
                 [ classList [ ( "active", n == activeIndex ) ]
                 , onClick (StartTransition (Number n))
                 ]

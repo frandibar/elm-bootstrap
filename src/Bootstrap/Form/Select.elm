@@ -25,9 +25,9 @@ module Bootstrap.Form.Select exposing
 
 import Bootstrap.Form.FormInternal as FormInternal
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
-import Html
-import Html.Attributes as Attributes
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
+import Html.Styled.Events as Events
 import Json.Decode as Json
 
 

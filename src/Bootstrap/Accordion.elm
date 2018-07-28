@@ -88,9 +88,9 @@ import Bootstrap.ListGroup as ListGroup
 import Bootstrap.Utilities.DomHelper as DomHelper
 import Browser.Events
 import Dict exposing (Dict)
-import Html
-import Html.Attributes exposing (class, href, style)
-import Html.Events exposing (custom, on, onClick)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (class, href, style)
+import Html.Styled.Events exposing (custom, on, onClick)
 import Json.Decode as Json
 
 
@@ -618,7 +618,7 @@ renderCardBlock :
     -> Html.Html msg
 renderCardBlock state configRec ((Card { id, blocks }) as card_) =
     Html.div
-        ([ Html.Attributes.id id ] ++ animationAttributes state configRec card_)
+        ([ Attributes.id id ] ++ animationAttributes state configRec card_)
         [ Html.div [] (CardInternal.renderBlocks blocks) ]
 
 

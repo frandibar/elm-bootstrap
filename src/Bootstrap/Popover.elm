@@ -71,9 +71,9 @@ cases where they don't work as you'd expect. So make sure you test your views wh
 -}
 
 import Bootstrap.Utilities.DomHelper as DomHelper
-import Html
-import Html.Attributes exposing (attribute, class, classList, style)
-import Html.Events
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (attribute, class, classList, style)
+import Html.Styled.Events
 import Json.Decode as Json
 
 
@@ -249,7 +249,7 @@ a popover
 onClick : State -> (State -> msg) -> List (Html.Attribute msg)
 onClick state toMsg =
     [ class "popover-trigger"
-    , Html.Events.on "click" <| toggleState state toMsg
+    , Html.Styled.Events.on "click" <| toggleState state toMsg
     ]
 
 
@@ -263,8 +263,8 @@ a popover
 onHover : State -> (State -> msg) -> List (Html.Attribute msg)
 onHover state toMsg =
     [ class "popover-trigger"
-    , Html.Events.on "mouseenter" <| toggleState state toMsg
-    , Html.Events.on "mouseleave" <| forceClose state toMsg
+    , Html.Styled.Events.on "mouseenter" <| toggleState state toMsg
+    , Html.Styled.Events.on "mouseleave" <| forceClose state toMsg
     ]
 
 

@@ -11,8 +11,9 @@ module Bootstrap.AlertTest exposing
 
 import Bootstrap.Alert as Alert
 import Expect
-import Html
-import Html.Attributes
+import Html.Attributes as Attr
+import Html.Styled as Html
+import Html.Styled.Attributes
 import Test exposing (Test, describe, test)
 import Test.Html.Event as Event
 import Test.Html.Query as Query
@@ -41,6 +42,7 @@ simpleAlerts =
                 , alert "light" Alert.simpleLight
                 , alert "dark" Alert.simpleDark
                 ]
+                |> Html.toUnstyled
 
         expectRoled roleTxt =
             html
@@ -89,6 +91,7 @@ alertWithOptions =
             Alert.config
                 |> alertType
                 |> Alert.view Alert.shown
+                |> Html.toUnstyled
 
         expectWithOption alertType nodeClass =
             html alertType
@@ -124,12 +127,14 @@ alertIsDismissable =
                 |> Alert.info
                 |> Alert.children [ Html.text "X" ]
                 |> Alert.view Alert.shown
+                |> Html.toUnstyled
 
         htmlWithAnimation =
             Alert.config
                 |> Alert.dismissableWithAnimation AlertMsg
                 |> Alert.info
                 |> Alert.view Alert.shown
+                |> Html.toUnstyled
     in
     describe "Alert is dismissable"
         [ test "Expect close message on click" <|
@@ -144,7 +149,7 @@ alertIsDismissable =
                 htmlWithAnimation
                     |> Query.fromHtml
                     |> Query.find [ tag "button" ]
-                    |> Query.has [ attribute <| Html.Attributes.attribute "aria-label" "close" ]
+                    |> Query.has [ attribute <| Attr.attribute "aria-label" "close" ]
         ]
 
 
@@ -153,6 +158,7 @@ alertWithLink =
     let
         html =
             Alert.simpleInfo [] [ Alert.link [] [ Html.text "link" ] ]
+                |> Html.toUnstyled
     in
     describe "Alert with link"
         [ test "Expect link class and text" <|
@@ -176,6 +182,7 @@ alertWithHeaders =
                 , Alert.h5 [] [ Html.text "h5" ]
                 , Alert.h6 [] [ Html.text "h6" ]
                 ]
+                |> Html.toUnstyled
 
         expectH txt =
             html
@@ -203,7 +210,8 @@ alertWithAttributes : Test
 alertWithAttributes =
     let
         html =
-            Alert.simpleInfo [ Html.Attributes.class "my-class" ] []
+            Alert.simpleInfo [ Html.Styled.Attributes.class "my-class" ] []
+                |> Html.toUnstyled
     in
     describe "Alert with attributes"
         [ test "Expect has passed class" <|
@@ -220,6 +228,7 @@ alertClosed =
         html =
             Alert.config
                 |> Alert.view Alert.closed
+                |> Html.toUnstyled
     in
     describe "Closed alert"
         [ test "Expect display:none" <|

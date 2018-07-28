@@ -99,9 +99,9 @@ To support dismissable alerts you must keep track of the alerts visibility in yo
 
 import Bootstrap.Internal.Role as Role exposing (Role(..))
 import Browser.Events
-import Html
-import Html.Attributes exposing (attribute, class, classList, style, type_)
-import Html.Events exposing (on, onClick)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (attribute, class, classList, style, type_)
+import Html.Styled.Events exposing (on, onClick)
 import Json.Decode as Decode
 
 
@@ -377,7 +377,7 @@ viewAttributes : Visibility -> ConfigRec msg -> List (Html.Attribute msg)
 viewAttributes visibility configRec =
     let
         alertAttributes =
-            [ Html.Attributes.attribute "role" "alert"
+            [ attribute "role" "alert"
             , classList
                 [ ( "alert", True )
                 , ( "alert-dismissible", isDismissable configRec )

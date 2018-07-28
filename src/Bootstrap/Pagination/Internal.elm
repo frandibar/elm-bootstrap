@@ -1,7 +1,7 @@
 module Bootstrap.Pagination.Internal exposing (Item(..), ItemConfig(..), Link, Status(..), itemAttributes, linkAttributes, viewItem)
 
-import Html
-import Html.Attributes exposing (class, href, tabindex)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class, href, tabindex)
 import Html.Events exposing (custom)
 import Json.Decode as Decode
 

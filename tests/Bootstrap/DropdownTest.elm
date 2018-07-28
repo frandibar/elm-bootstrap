@@ -3,8 +3,9 @@ module Bootstrap.DropdownTest exposing (ToggleMsg(..), dropDown, splitDropDown, 
 import Bootstrap.Button as Button
 import Bootstrap.Dropdown as Dropdown
 import Expect
-import Html
-import Html.Attributes as Attr
+import Html.Attributes as HA
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector exposing (attribute, class, classes, tag, text)
@@ -38,6 +39,7 @@ dropDown =
                     , Dropdown.buttonItem [] [ Html.text "DoNothing2" ]
                     ]
                 }
+                |> Html.toUnstyled
     in
     describe "Dropdown"
         [ test "expect wrapping div and class" <|
@@ -106,6 +108,7 @@ splitDropDown =
                 , items =
                     [ Dropdown.buttonItem [] [ Html.text "Item 1" ] ]
                 }
+                |> Html.toUnstyled
     in
     describe "Split dropdown"
         [ test "expect wrapping div and class" <|
@@ -129,6 +132,6 @@ splitDropDown =
                     |> Query.has
                         [ classes [ "btn", "btn-info", "dropdown-toggle", "dropdown-toggle-split" ]
                         , tag "button"
-                        , attribute <| Attr.attribute "type" "button"
+                        , attribute <| HA.attribute "type" "button"
                         ]
         ]

@@ -128,9 +128,9 @@ import Bootstrap.General.HAlign as General
 import Bootstrap.General.Internal exposing (hAlignClass)
 import Bootstrap.Pagination.Internal as Internal
 import Bootstrap.Pagination.Item as Item
-import Html
-import Html.Attributes exposing (attribute, class)
-import Html.Events exposing (onClick)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes exposing (attribute, class)
+import Html.Styled.Events exposing (onClick)
 
 
 {-| Opaque type holding the configuration options for a pagination widget.
@@ -318,12 +318,12 @@ itemsList conf config =
                 |> Item.link
                     ((case prevItem of
                         Just item ->
-                            [ Html.Attributes.href <| conf.urlFn (conf.activeIdx - 1) item
+                            [ Attributes.href <| conf.urlFn (conf.activeIdx - 1) item
                             , onClick <| conf.selectedMsg (conf.activeIdx - 1)
                             ]
 
                         Nothing ->
-                            [ Html.Attributes.href "#" ]
+                            [ Attributes.href "#" ]
                      )
                         ++ attributes
                     )
@@ -340,7 +340,7 @@ itemsList conf config =
                 Item.item
                     |> Item.disabled (idx == conf.activeIdx)
                     |> Item.link
-                        ([ Html.Attributes.href <| conf.urlFn idx item
+                        ([ Attributes.href <| conf.urlFn idx item
                          , onClick <| conf.selectedMsg idx
                          ]
                             ++ attributes
@@ -356,12 +356,12 @@ itemsList conf config =
                         |> Item.link
                             ((case nextItem of
                                 Just item ->
-                                    [ Html.Attributes.href <| conf.urlFn (conf.activeIdx + 1) item
+                                    [ Attributes.href <| conf.urlFn (conf.activeIdx + 1) item
                                     , onClick <| conf.selectedMsg (conf.activeIdx + 1)
                                     ]
 
                                 Nothing ->
-                                    [ Html.Attributes.href "#" ]
+                                    [ Attributes.href "#" ]
                              )
                                 ++ attributes
                             )

@@ -1,7 +1,7 @@
 module Bootstrap.Internal.Role exposing (Role(..), toClass)
 
-import Html
-import Html.Attributes exposing (class)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 
 
 type Role

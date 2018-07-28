@@ -61,8 +61,8 @@ Use align-self utilities on flexbox items to individually change their alignment
 
 -}
 
-import Html exposing (Attribute)
-import Html.Attributes exposing (class)
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes exposing (class)
 
 
 {-| Make an element become a flex container (whilst being a block level element).

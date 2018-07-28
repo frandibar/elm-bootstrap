@@ -17,8 +17,8 @@ module Bootstrap.Utilities.Spacing exposing
 
 -}
 
-import Html exposing (Attribute)
-import Html.Attributes exposing (class)
+import Html.Styled exposing (Attribute)
+import Html.Styled.Attributes exposing (class)
 
 
 {-| Set margin to 0.

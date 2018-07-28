@@ -2,8 +2,8 @@ module Bootstrap.ListGroupTest exposing (contextual, contextualListGroup, custom
 
 import Bootstrap.ListGroup as ListGroup
 import Expect
-import Html exposing (text)
-import Html.Attributes as Attr exposing (href)
+import Html.Styled exposing (text, toUnstyled)
+import Html.Styled.Attributes as Attr exposing (href)
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector as Selector exposing (attribute, class, classes, disabled, tag)
@@ -20,40 +20,39 @@ vanillaListGroup =
 
         vanilla =
             ListGroup.ul (List.map Tuple.second items)
+                |> toUnstyled
+                |> Query.fromHtml
 
         keyed =
             ListGroup.keyedUl items
+                |> toUnstyled
+                |> Query.fromHtml
 
         tests html =
             [ test "expect ul with list-group class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has [ tag "ul", class "list-group" ]
             , test "expect three li's with list-group-item class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag "li", class "list-group-item" ]
                         |> Query.count (Expect.equal 3)
             , test "expect li has content" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag "li" ]
                         |> Query.index 0
                         |> Query.has [ Selector.text "basic" ]
             , test "expect li with active class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag "li" ]
                         |> Query.index 1
                         |> Query.has [ class "active" ]
             , test "expect li with disabled class and attribute" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag "li" ]
                         |> Query.index 2
                         |> Query.has [ class "disabled", Selector.disabled True ]
@@ -84,32 +83,27 @@ customListGroup =
             [ test "expect div with list-group class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.has [ tag "div", class "list-group" ]
             , test "expect three items with list-group-item class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag itemTag, class "list-group-item", class "list-group-item-action" ]
                         |> Query.count (Expect.equal 3)
             , test "expect item has content" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag itemTag ]
                         |> Query.index 0
                         |> Query.has [ Selector.text "List item 1" ]
             , test "expect item with active class" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag itemTag ]
                         |> Query.index 1
                         |> Query.has [ class "active" ]
             , test "expect item with disabled class and attribute" <|
                 \() ->
                     html
-                        |> Query.fromHtml
                         |> Query.findAll [ tag itemTag ]
                         |> Query.index 2
                         |> Query.has [ class "disabled", Selector.disabled True ]
@@ -117,15 +111,23 @@ customListGroup =
 
         anchors =
             ListGroup.custom (List.map Tuple.second anchorItems)
+                |> toUnstyled
+                |> Query.fromHtml
 
         keyedAnchors =
             ListGroup.keyedCustom anchorItems
+                |> toUnstyled
+                |> Query.fromHtml
 
         buttons =
             ListGroup.custom (List.map Tuple.second buttonItems)
+                |> toUnstyled
+                |> Query.fromHtml
 
         keyedButtons =
             ListGroup.keyedCustom buttonItems
+                |> toUnstyled
+                |> Query.fromHtml
     in
     describe "custom ListGroup"
         [ describe "anchors" (tests "a" anchors)
@@ -135,55 +137,47 @@ customListGroup =
         ]
 
 
-contextual : String -> Html.Html msg -> Test
+contextual : String -> Query.Single msg -> Test
 contextual name html =
     describe name
         [ test "expect primary" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-primary" ]
                     |> Query.has [ Selector.text "primary" ]
         , test "expect secondary" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-secondary" ]
                     |> Query.has [ Selector.text "secondary" ]
         , test "expect success" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-success" ]
                     |> Query.has [ Selector.text "success" ]
         , test "expect info" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-info" ]
                     |> Query.has [ Selector.text "info" ]
         , test "expect warning" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-warning" ]
                     |> Query.has [ Selector.text "warning" ]
         , test "expect danger" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-danger" ]
                     |> Query.has [ Selector.text "danger" ]
         , test "expect light" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-light" ]
                     |> Query.has [ Selector.text "light" ]
         , test "expect dark" <|
             \() ->
                 html
-                    |> Query.fromHtml
                     |> Query.find [ class "list-group-item-dark" ]
                     |> Query.has [ Selector.text "dark" ]
         ]
@@ -203,6 +197,8 @@ contextualListGroup =
                 , ListGroup.li [ ListGroup.light ] [ text "light" ]
                 , ListGroup.li [ ListGroup.dark ] [ text "dark" ]
                 ]
+                |> toUnstyled
+                |> Query.fromHtml
 
         contextualButtonList =
             ListGroup.custom
@@ -215,6 +211,8 @@ contextualListGroup =
                 , ListGroup.button [ ListGroup.light ] [ text "light" ]
                 , ListGroup.button [ ListGroup.dark ] [ text "dark" ]
                 ]
+                |> toUnstyled
+                |> Query.fromHtml
     in
     describe "contextual ListGroup"
         [ contextual "ListGroup with contextual items" contextualList

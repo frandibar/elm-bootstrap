@@ -60,9 +60,9 @@ import Bootstrap.Card.Internal as Internal
 import Bootstrap.Internal.Role as Role
 import Bootstrap.ListGroup as ListGroup
 import Bootstrap.Text as Text
-import Html
-import Html.Attributes exposing (class)
-import Html.Keyed as Keyed
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
+import Html.Styled.Keyed as Keyed
 
 
 {-| Opaque type representing options for customizing the styling of a card

@@ -3,8 +3,8 @@ module Bootstrap.Grid.Internal exposing (ColOption(..), ColOptions, ColumnCount(
 import Bootstrap.General.Internal exposing (HAlign, HorizontalAlign(..), ScreenSize(..), hAlignClass, screenSizeOption)
 import Bootstrap.Internal.Text as TextInternal
 import Bootstrap.Text as Text
-import Html
-import Html.Attributes exposing (class)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 
 
 type ColOption msg

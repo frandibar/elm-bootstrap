@@ -158,9 +158,9 @@ is a few more things you must wire-up and keep in mind.
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Utilities.DomHelper as DomHelper
 import Browser.Events
-import Html
-import Html.Attributes as Attr
-import Html.Events as Events
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
+import Html.Styled.Events as Events
 import Json.Decode as Json
 
 

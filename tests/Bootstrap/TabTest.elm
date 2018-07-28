@@ -2,8 +2,9 @@ module Bootstrap.TabTest exposing (horizontalAlignment, pillsAndAttributes, simp
 
 import Bootstrap.Tab as Tab
 import Expect
-import Html exposing (h4, p, text)
-import Html.Attributes as Attributes
+import Html.Attributes as HA
+import Html.Styled exposing (h4, p, text, toUnstyled)
+import Html.Styled.Attributes as Attributes
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
 import Test.Html.Selector as Selector exposing (attribute, class, classes, tag)
@@ -35,15 +36,15 @@ simpleTabs =
                         }
                     ]
                 |> Tab.view Tab.initialState
+                |> toUnstyled
+                |> Query.fromHtml
 
         nav =
             html
-                |> Query.fromHtml
                 |> Query.find [ classes [ "nav", "nav-tabs" ] ]
 
         content =
             html
-                |> Query.fromHtml
                 |> Query.find [ class "tab-content" ]
     in
     describe "Simple tab"
@@ -83,7 +84,7 @@ simpleTabs =
                     content
                         |> Query.findAll [ class "tab-pane" ]
                         |> Query.index 0
-                        |> Query.has [ attribute <| Attributes.attribute "id" "tabItem1" ]
+                        |> Query.has [ attribute <| HA.attribute "id" "tabItem1" ]
             ]
         ]
 
@@ -96,6 +97,7 @@ pillsAndAttributes =
                 |> Tab.pills
                 |> Tab.attrs [ Attributes.name "myTabs" ]
                 |> Tab.view Tab.initialState
+                |> toUnstyled
     in
     describe "pills"
         [ test "Expect nav-pills class" <|
@@ -109,7 +111,7 @@ pillsAndAttributes =
                 html
                     |> Query.fromHtml
                     |> Query.find [ tag "ul" ]
-                    |> Query.has [ attribute <| Attributes.attribute "name" "myTabs" ]
+                    |> Query.has [ attribute <| HA.attribute "name" "myTabs" ]
         ]
 
 
@@ -120,12 +122,13 @@ horizontalAlignment =
             Tab.config (\_ -> ())
                 |> alignment
                 |> Tab.view Tab.initialState
+                |> toUnstyled
+                |> Query.fromHtml
 
         alignmentTest alignment className =
             test ("alignment of " ++ className) <|
                 \() ->
                     html alignment
-                        |> Query.fromHtml
                         |> Query.find [ class "nav-tabs" ]
                         |> Query.has [ class className ]
     in

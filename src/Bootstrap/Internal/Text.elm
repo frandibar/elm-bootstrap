@@ -8,9 +8,8 @@ module Bootstrap.Internal.Text exposing
 
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
 import Bootstrap.Internal.Role as Role
-import Html
-import Html.Attributes
-
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 
 type alias HAlign =
     { dir : TextAlignDir
@@ -36,7 +35,7 @@ textAlignClass { dir, size } =
                 |> Maybe.withDefault "-"
            )
         ++ textAlignDirOption dir
-        |> Html.Attributes.class
+        |> Attributes.class
 
 
 textAlignDirOption : TextAlignDir -> String
@@ -56,7 +55,7 @@ textColorClass : Color -> Html.Attribute msg
 textColorClass color =
     case color of
         White ->
-            Html.Attributes.class "text-white"
+            Attributes.class "text-white"
 
         Role role ->
             Role.toClass "text" role

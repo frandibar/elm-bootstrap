@@ -26,8 +26,8 @@ module Bootstrap.Card.Block exposing
 import Bootstrap.Card.Internal as Internal
 import Bootstrap.Internal.Role as Role
 import Bootstrap.Text as Text
-import Html
-import Html.Attributes exposing (class)
+import Html.Styled as Html
+import Html.Styled.Attributes exposing (class)
 
 
 {-| Opaque type representing options for styling a card block

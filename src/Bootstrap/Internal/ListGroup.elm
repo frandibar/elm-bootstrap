@@ -1,8 +1,8 @@
 module Bootstrap.Internal.ListGroup exposing (CustomItem(..), Item(..), ItemOption(..), ItemOptions, applyModifier, defaultOptions, itemAttributes, preventClick, renderCustomItem, renderItem)
 
 import Bootstrap.Internal.Role as Role exposing (Role(..))
-import Html
-import Html.Attributes as Attr exposing (class, classList)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr exposing (class, classList)
 
 
 type ItemOption msg

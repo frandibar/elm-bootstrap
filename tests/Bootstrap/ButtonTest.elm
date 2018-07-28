@@ -1,8 +1,9 @@
 module Bootstrap.ButtonTest exposing (Msg(..), fancyBlockButton, linkButton, outlinedButtons, roledButtons, vanillaButton)
 
 import Bootstrap.Button as Button
-import Html
-import Html.Attributes as Attr
+import Html.Attributes as HA
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr
 import Test exposing (Test, describe, test)
 import Test.Html.Event as Event
 import Test.Html.Query as Query
@@ -18,6 +19,7 @@ vanillaButton =
     let
         html =
             Button.button [ Button.onClick Msg ] [ Html.text "Click" ]
+                |> Html.toUnstyled
     in
     describe "Plain button"
         [ test "expect button and text" <|
@@ -44,6 +46,7 @@ linkButton =
     let
         html =
             Button.linkButton [ Button.danger ] [ Html.text "Click" ]
+                |> Html.toUnstyled
     in
     describe "Plain link button"
         [ test "expect a and text" <|
@@ -60,7 +63,7 @@ linkButton =
             \() ->
                 html
                     |> Query.fromHtml
-                    |> Query.has [ attribute <| Attr.attribute "role" "button" ]
+                    |> Query.has [ attribute <| HA.attribute "role" "button" ]
         ]
 
 
@@ -78,6 +81,7 @@ roledButtons =
                 , Button.button [ Button.roleLink ] [ Html.text "link" ]
                 , Button.button [ Button.disabled True ] [ Html.text "disabled" ]
                 ]
+                |> Html.toUnstyled
     in
     describe "Roled buttons"
         [ test "expect primary" <|
@@ -126,7 +130,7 @@ roledButtons =
             \() ->
                 html
                     |> Query.fromHtml
-                    |> Query.find [ class "disabled", attribute <| Attr.disabled True ]
+                    |> Query.find [ class "disabled", attribute <| HA.disabled True ]
                     |> Query.has [ text "disabled" ]
         ]
 
@@ -143,6 +147,7 @@ outlinedButtons =
                 , Button.button [ Button.outlineWarning ] [ Html.text "warning" ]
                 , Button.button [ Button.outlineDanger ] [ Html.text "danger" ]
                 ]
+                |> Html.toUnstyled
     in
     describe "Outlined buttons"
         [ test "expect primary" <|
@@ -195,6 +200,7 @@ fancyBlockButton =
                 , Button.attrs [ Attr.class "rounded" ]
                 ]
                 [ Html.text "Click" ]
+                |> Html.toUnstyled
     in
     describe "Fancy Block Button"
         [ test "expect a and text" <|
@@ -211,5 +217,5 @@ fancyBlockButton =
             \() ->
                 html
                     |> Query.fromHtml
-                    |> Query.has [ attribute <| Attr.attribute "role" "button" ]
+                    |> Query.has [ attribute <| HA.attribute "role" "button" ]
         ]

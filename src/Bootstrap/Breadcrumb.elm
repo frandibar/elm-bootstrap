@@ -14,8 +14,8 @@ module Bootstrap.Breadcrumb exposing (Item, item, container)
 
 -}
 
-import Html
-import Html.Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 
 
 {-| Opaque type representing an item in the breadcrumb trail.
@@ -47,8 +47,8 @@ container items =
             Html.text ""
 
         _ ->
-            Html.nav [ Html.Attributes.attribute "aria-label" "breadcrumb", Html.Attributes.attribute "role" "navigation" ]
-                [ Html.ol [ Html.Attributes.class "breadcrumb" ] <| toListItems items ]
+            Html.nav [ Attributes.attribute "aria-label" "breadcrumb", Attributes.attribute "role" "navigation" ]
+                [ Html.ol [ Attributes.class "breadcrumb" ] <| toListItems items ]
 
 
 toListItems : List (Item msg) -> List (Html.Html msg)
@@ -58,7 +58,7 @@ toListItems items =
             []
 
         [ Item attributes children ] ->
-            [ Html.li (attributes ++ [ Html.Attributes.attribute "aria-current" "page", Html.Attributes.class "breadcrumb-item active" ]) children ]
+            [ Html.li (attributes ++ [ Attributes.attribute "aria-current" "page", Attributes.class "breadcrumb-item active" ]) children ]
 
         (Item attributes children) :: rest ->
-            [ Html.li (attributes ++ [ Html.Attributes.class "breadcrumb-item" ]) children ] ++ toListItems rest
+            [ Html.li (attributes ++ [ Attributes.class "breadcrumb-item" ]) children ] ++ toListItems rest

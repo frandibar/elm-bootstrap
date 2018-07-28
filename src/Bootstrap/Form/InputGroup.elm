@@ -47,8 +47,8 @@ import Bootstrap.Button as Button
 import Bootstrap.Dropdown as Dropdown
 import Bootstrap.Form.Input as Input
 import Bootstrap.General.Internal exposing (ScreenSize(..), screenSizeOption)
-import Html
-import Html.Attributes as Attributes
+import Html.Styled as Html
+import Html.Styled.Attributes as Attributes
 
 
 {-| Opaque representation of the view configuration for an input group.

@@ -24,8 +24,8 @@ It doesn't use the HTML5 `<progress>` element, ensuring you can stack progress b
 
 -}
 
-import Html exposing (Attribute, Html)
-import Html.Attributes as Attributes exposing (attribute, class, classList, style)
+import Html.Styled as Html exposing (Attribute, Html)
+import Html.Styled.Attributes as Attributes exposing (attribute, class, classList, style)
 
 
 {-| Opaque type representing available display options for the progress bar
@@ -33,7 +33,7 @@ import Html.Attributes as Attributes exposing (attribute, class, classList, styl
 type Option msg
     = Value Float
     | Height (Maybe Int)
-    | Label (List (Html.Html msg))
+    | Label (List (Html msg))
     | Roled (Maybe Role)
     | Striped Bool
     | Animated Bool

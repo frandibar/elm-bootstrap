@@ -43,7 +43,7 @@ superSimple =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.first
+                    |> Query.index 1
                     |> Query.has [ tag "thead" ]
         , test "expect ths" <|
             \() ->
@@ -59,7 +59,7 @@ superSimple =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.index 1
+                    |> Query.index 2
                     |> Query.has [ tag "tbody" ]
         , test "expect tds" <|
             \() ->

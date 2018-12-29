@@ -62,7 +62,7 @@ groupWithOptions =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.first
+                    |> Query.index 1
                     |> Query.has
                         [ class "btn-primary"
                         , text "First"
@@ -84,7 +84,7 @@ linkGroup =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.first
+                    |> Query.index 1
                     |> Query.has
                         [ tag "a"
                         , class "btn-primary"
@@ -107,7 +107,7 @@ checkGroup =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.first
+                    |> Query.index 1
                     |> Query.has
                         [ tag "label"
                         , class "btn-primary"
@@ -118,7 +118,7 @@ checkGroup =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.index 0
+                    |> Query.index 1
                     |> Query.children []
                     |> Query.index 0
                     |> Query.has
@@ -143,7 +143,7 @@ radioGroup =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.first
+                    |> Query.index 1
                     |> Query.has
                         [ tag "label"
                         , class "btn-primary"
@@ -154,7 +154,7 @@ radioGroup =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.index 0
+                    |> Query.index 1
                     |> Query.children []
                     |> Query.index 0
                     |> Query.has
@@ -189,7 +189,7 @@ toolbar =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.index 0
+                    |> Query.index 1
                     |> Query.has
                         [ tag "div"
                         , class "btn-group"
@@ -199,7 +199,7 @@ toolbar =
                 html
                     |> Query.fromHtml
                     |> Query.children []
-                    |> Query.index 0
+                    |> Query.index 1
                     |> Query.children []
                     |> Query.index 0
                     |> Query.has

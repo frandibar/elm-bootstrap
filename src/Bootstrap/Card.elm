@@ -53,7 +53,7 @@ module Bootstrap.Card
 
 # Cards
 
-@docs view, Config
+@docs view, Config, customListGroup
 
 
 ## Header

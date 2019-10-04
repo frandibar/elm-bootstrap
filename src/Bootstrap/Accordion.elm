@@ -646,12 +646,7 @@ animationAttributes state configRec (Card { id }) =
             styles pixelHeight
 
         Shown ->
-            case cardState.height of
-                Just x ->
-                    styles pixelHeight
-
-                Nothing ->
-                    styles "100%"
+            styles "100%"
 
 
 transitionStyle : Bool -> String -> List (Html.Attribute msg)

@@ -25,8 +25,8 @@ module Bootstrap.Spinner exposing
 
 import Bootstrap.Internal.Text as TextInternal
 import Bootstrap.Text as Text
-import Html
-import Html.Attributes exposing (class, classList, style)
+import Html.Styled as Html
+import Html.Styled.Attributes as Attr exposing (class, classList, style)
 
 
 {-| Opaque type for spinner options.
@@ -153,7 +153,7 @@ toAttributes options =
         ++ (sizeAttributes options.size options.kind
                 |> Maybe.withDefault []
            )
-        ++ [ Html.Attributes.attribute "role" "status" ]
+        ++ [ Attr.attribute "role" "status" ]
         ++ options.attributes
 
 
